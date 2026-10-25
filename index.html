@@ -3,306 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to TaleWonder - เปิดโลกจินตนาการด้วยนิทานมีชีวิต</title>
+    <title>TaleWonder - แพลตฟอร์มและร้านหนังสือนิทานสำหรับเด็ก</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Google Fonts (Prompt) -->
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    
     <style>
         body {
             font-family: 'Prompt', sans-serif;
+            scroll-behavior: smooth;
             color: #2d3436;
             background-color: #fffdf9;
-            scroll-behavior: smooth;
         }
-        /* Welcome Hero Banner */
-        .welcome-hero {
-            min-height: 92vh;
-            background: radial-gradient(circle at top right, #ffe8cc 0%, #fff6e5 55%, #ffffff 100%);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: 80px 0;
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
         }
-        .slogan-box {
-            border-left: 5px solid #ff6b6b;
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(6px);
+        /* Hero Header Section */
+        .hero-section {
+            background: linear-gradient(135deg, #fff6e5 0%, #ffe8cc 100%);
+            padding: 120px 0 80px;
         }
         .btn-brand {
             background-color: #ff6b6b;
             border-color: #ff6b6b;
-            color: #ffffff;
+            color: #fff;
             transition: all 0.3s ease;
         }
         .btn-brand:hover {
             background-color: #ee5253;
             border-color: #ee5253;
-            color: #ffffff;
-            transform: translateY(-3px);
+            color: #fff;
+            transform: translateY(-2px);
         }
-        /* Floating Image Animation */
-        @keyframes floatSlow {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-        }
-        .floating-book {
-            animation: floatSlow 4s ease-in-out infinite;
-        }
-        /* Brand Concept Cards */
-        .concept-card {
-            background: #ffffff;
-            border-radius: 24px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .concept-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.12) !important;
-        }
-        .icon-circle {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
+        /* Feature Icon Box */
+        .feature-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 22px;
+            background-color: #fff0f0;
+            color: #ff6b6b;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
+            font-size: 2.2rem;
+            margin-bottom: 1.25rem;
         }
-        /* Book Showcase Card */
-        .book-card {
+        /* Age Group Card */
+        .age-card {
             border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .book-card:hover {
+        .age-card:hover {
             transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08) !important;
         }
-        .book-cover {
-            height: 240px;
+        .age-img {
+            height: 220px;
             object-fit: cover;
             width: 100%;
+        }
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+        }
+        /* Social Links Footer */
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            background-color: #ff6b6b;
+            color: white;
+            transform: translateY(-3px);
+        }
+        /* Welcome Modal Header */
+        .modal-welcome-header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
         }
     </style>
 </head>
 <body>
 
-    <!-- ================= TOP BAR ================= -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold fs-4 text-danger" href="welcome.html">
-                <i class="bi bi-stars me-1 text-warning"></i>TaleWonder
-            </a>
-            <div class="ms-auto d-flex gap-2">
-                <a href="#brand-concept" class="btn btn-light rounded-pill d-none d-md-inline-block">เข้าสู่ระบบ</a>
-                 <a href="#story-showcase" class="btn btn-light rounded-pill d-none d-md-inline-block">หมวดหมู่</a>
-                  <a href="#story-showcase" class="btn btn-light rounded-pill d-none d-md-inline-block">เกี่ยวกับเรา</a>
+    <!-- ================= 0. หน้าต่างแนะนำเว็บไซต์ (WELCOME MODAL POPUP) ================= -->
+    <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+                <div class="modal-header modal-welcome-header border-0 p-4">
+                    <h5 class="modal-title fw-bold fs-4" id="welcomeModalLabel">
+                        <i class="bi bi-stars text-warning me-2"></i>ยินดีต้อนรับสู่ TaleWonder (เทลวันเดอร์)
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 p-md-5 text-center">
+                    <span class="badge bg-warning text-dark rounded-pill px-3 py-2 mb-3 fw-semibold">
+                        Interactive Storybook Platform & Bookstore
+                    </span>
+                    <h3 class="fw-bold text-danger mb-2">“เปิดโลกจินตนาการด้วยนิทานมีชีวิต”</h3>
+                    <p class="text-muted fst-italic mb-4">
+                        "Where Every Story Comes Alive — เพราะนิทานหนึ่งเรื่อง คือจุดเริ่มต้นของการเติบโตและความอบอุ่นในครอบครัว"
+                    </p>
+                    <p class="text-secondary mb-4">
+                        ศูนย์รวมหนังสือนิทานดิจิทัลโต้ตอบได้ (Interactive E-Book), นิทานเสียงพากย์ 2 ภาษา และหนังสือนิทานปกแข็งที่คัดสรรมาเพื่อพัฒนาการของเด็กตั้งแต่ <strong>0 - 3 ขวบ</strong>, <strong>4 - 6 ขวบ</strong> และ <strong>7 ขวบขึ้นไป</strong>
+                    </p>
+                    <div class="row g-3 text-start mb-4">
+                        <div class="col-12 col-md-4">
+                            <div class="p-3 bg-light rounded-3 h-100">
+                                <h6 class="fw-bold text-danger mb-1"><i class="bi bi-book-half me-1"></i> นิทานแบ่งตามวัย</h6>
+                                <small class="text-muted">คัดสรรเนื้อหาเหมาะสมตั้งแต่แรกเกิดจนถึงวัยประถม</small>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="p-3 bg-light rounded-3 h-100">
+                                <h6 class="fw-bold text-danger mb-1"><i class="bi bi-volume-up-fill me-1"></i> เสียงพากย์อบอุ่น</h6>
+                                <small class="text-muted">ฝึกภาษาไทย-อังกฤษ พร้อมโหมดอัดเสียงคุณพ่อคุณแม่</small>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="p-3 bg-light rounded-3 h-100">
+                                <h6 class="fw-bold text-danger mb-1"><i class="bi bi-gift-fill me-1"></i> เริ่มต้นอ่านฟรี!</h6>
+                                <small class="text-muted">แพ็กเกจ Basic 0 บาท ทดลองอ่านฟรีได้ทันที</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <button type="button" class="btn btn-brand btn-lg rounded-pill px-5 shadow-sm" data-bs-dismiss="modal">
+                            เข้าสู่เว็บไซต์เลย <i class="bi bi-arrow-right-circle ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <a href="index.html" class="btn btn-brand rounded-pill px-4 fw-medium shadow-sm">
-                    ค้นหานิทาน <i class="bi bi-arrow-right ms-1"></i>
-                </a>
+    <!-- ================= 1. NAVBAR (Required) ================= -->
+    <nav class="navbar navbar-expand-xl navbar-light fixed-top shadow-sm">
+        <div class="container">
+            <!-- โลโก้ของแบรนด์ -->
+            <a class="navbar-brand fw-bold fs-4 text-danger" href="#header">
+                <i class="bi bi-book-half me-2"></i>TaleWonder
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- เมนูนำทาง (Navigation Menu) พร้อม Anchor Link -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-xl-center gap-xl-1">
+                    <li class="nav-item"><a class="nav-link" href="#header">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#age-stories">หมวดหมู่</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">แพ็กเกจ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team-member.html">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#social">ติดต่อเรา</a></li>
+                    <!-- ปุ่มเข้าสู่หน้าต่างหน้าร้าน -->
+                    <li class="nav-item ms-xl-1">
+                        <a class="btn btn-outline-danger btn-sm rounded-pill px-3 my-1 my-xl-0" href="Shoptale.html" role="button">
+                            <i class="bi bi-book-half ms-1"></i> เข้าสู่หน้าร้าน
+                        </a>
+                    </li>
+                    <!-- ระบบลงทะเบียนและแสดงสถานะสมาชิก + Package -->
+                    <li class="nav-item ms-xl-2" id="navAuthArea">
+                        <button type="button" class="btn btn-brand btn-sm rounded-pill px-3 py-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            <i class="bi bi-people-fill me-1"></i> สมัครสมาชิก
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ================= 1. WELCOME & BRAND SLOGAN HERO ================= -->
-    <section class="welcome-hero mt-4">
+    <!-- ================= 2. HEADER / TITLE SECTION (20 คะแนน) ================= -->
+    <!-- เงื่อนไข: แสดงชื่อเว็บ โลโก้ สโลแกน ปุ่ม CTA / Desktop แบ่ง 2 ส่วน, หน้าจออื่นเรียง 1 แถว -->
+    <header id="header" class="hero-section">
         <div class="container">
-            <div class="row align-items-center gy-5">
-                <!-- ฝั่งซ้าย: แนะนำแบรนด์และสโลแกน -->
-                <div class="col-12 col-lg-6 text-center text-lg-start">
-                    <div class="d-inline-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm mb-4">
-                        <span class="badge bg-danger rounded-pill me-2">NEW</span>
-                        <small class="fw-semibold text-secondary">Interactive Storybook Platform & Bookstore</small>
-                    </div>
-
-                    <h1 class="display-4 fw-bold mb-3">
-                        ยินดีต้อนรับสู่ <span class="text-danger">TaleWonder</span>
-                    </h1>
-
-                    <!-- กล่องแสดงสโลแกนของแบรนด์ -->
-                    <div class="slogan-box p-4 rounded-4 shadow-sm mb-4 text-start">
-                        <p class="text-uppercase text-danger fw-bold small mb-1">
-                            <i class="bi bi-quote me-1"></i>Our Brand Slogan
-                        </p>
-                        <h3 class="fw-bold text-dark mb-2">
-                            “เปิดโลกจินตนาการด้วยนิทานมีชีวิต”
-                        </h3>
-                        <p class="text-muted fst-italic mb-0">
-                            "Where Every Story Comes Alive — เพราะนิทานหนึ่งเรื่อง คือจุดเริ่มต้นของการเติบโตและความอบอุ่นในครอบครัว"
-                        </p>
-                    </div>
-
-                    <p class="lead text-secondary mb-4">
-                        เราไม่ใช่เพียงร้านขายหนังสือนิทาน แต่เราคือพื้นที่แห่งจินตนาการที่รวม <strong>หนังสือนิทานปกแข็งสั่งทำพิเศษ</strong>, <strong>E-Book โต้ตอบได้</strong> และ <strong>นิทานเสียง 2 ภาษา</strong> เพื่อเปลี่ยนเวลาหน้าจอของเด็กๆ ให้เป็นช่วงเวลาแห่งความสุขและการเรียนรู้
-                    </p>
-
-                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
-                        <a href="index.html" class="btn btn-brand btn-lg rounded-pill px-5 shadow">
-                            <i class="bi bi-door-open-fill me-2"></i>เข้าสู่ร้านหนังสือนิทาน
-                        </a>
-                        <a href="#story-showcase" class="btn btn-outline-dark btn-lg rounded-pill px-4">
-                            สำรวจนิทานของเรา
-                        </a>
-                    </div>
-                </div>
-
-                <!-- ฝั่งขวา: ภาพประกอบสื่อถึงโลกแห่งนิทาน -->
-                <div class="col-12 col-lg-6 text-center">
-                    <div class="position-relative d-inline-block">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=900&q=80" 
-                             alt="TaleWonder Brand Concept" 
-                             class="img-fluid rounded-5 shadow-lg border border-5 border-white floating-book">
-                        
-                        <!-- ป้ายกำกับลอยบนรูป -->
-                        <div class="bg-white rounded-4 shadow p-3 position-absolute bottom-0 start-0 translate-middle-y ms-3 d-none d-sm-flex align-items-center gap-3">
-                            <div class="bg-warning bg-opacity-25 text-warning rounded-circle p-3">
-                                <i class="bi bi-book-half fs-4"></i>
-                            </div>
-                            <div class="text-start">
-                                <h6 class="fw-bold mb-0">นิทานมากกว่า 1,000+ เรื่อง</h6>
-                                <small class="text-muted">คัดสรรตามช่วงวัย 1 - 13 ปี</small>
-                            </div>
-                        </div>
+            <!-- Row ที่ 1 (สำหรับ Desktop): แถบป้ายสโลแกนและโลโก้แบรนด์ -->
+            <div class="row mb-3 d-none d-lg-flex">
+                <div class="col-12">
+                    <div class="d-inline-flex align-items-center bg-white rounded-pill px-4 py-2 shadow-sm">
+                        <span class="badge bg-danger rounded-pill me-2">TaleWonder Brand</span>
+                        <span class="fw-medium text-secondary small">“เปิดโลกจินตนาการด้วยนิทานมีชีวิต (Where Every Story Comes Alive)”</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ================= 2. BRANDING CONCEPT (แนวคิดของแบรนด์) ================= -->
-    <section id="brand-concept" class="py-5 bg-white">
+            <!-- Row ที่ 2: เนื้อหาแนะนำสินค้า ปุ่มดาวน์โหลด/เริ่มต้น และรูปภาพ -->
+            <div class="row align-items-center gy-5">
+                <!-- ฝั่งซ้าย: ชื่อเว็บไซต์ สโลแกน คำอธิบาย และปุ่ม Call to Action -->
+                <div class="col-12 col-lg-6 text-center text-lg-start">
+                    <div class="d-inline-block d-lg-none mb-3">
+                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                            ✨ เปิดโลกจินตนาการด้วยนิทานมีชีวิต
+                        </span>
+                    </div>
+                    <h1 class="display-5 fw-bold mb-3">
+                        เติมเต็มความสุขทุกค่ำคืนด้วยคลังหนังสือนิทาน <span class="text-danger">TaleWonder</span>
+                    </h1>
+                    <p class="lead text-secondary mb-4">
+                        แพลตฟอร์มและร้านหนังสือนิทานออนไลน์สำหรับเด็กทุกช่วงวัย เพลิดเพลินกับนิทานภาพเคลื่อนไหว เสียงพากย์สองภาษา และโหมดเลือกอ่านตามพัฒนาการของลูกน้อย
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                        <a href="#pricing" class="btn btn-brand btn-lg rounded-pill px-4 shadow">
+                            <i class="bi bi-rocket-takeoff-fill me-2"></i>เริ่มต้นอ่านฟรี (สมัครสมาชิก)
+                        </a>
+                        <a href="#age-stories" class="btn btn-outline-dark btn-lg rounded-pill px-4">
+                            <i class="bi bi-download me-2"></i>เลือกนิทาน
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ฝั่งขวา: รูปภาพแนะนำสินค้า -->
+                <div class="col-12 col-lg-6 text-center">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80" 
+                         alt="TaleWonder Storybook Showcase" 
+                         class="img-fluid rounded-4 shadow-lg border border-4 border-white">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= 3. FEATURES SECTION (20 คะแนน) ================= -->
+    <!-- เงื่อนไข: แสดงอย่างน้อย 3 ฟีเจอร์ / หน้าจอใหญ่แสดงแนวนอน 3 คอลัมน์ (col-lg-4) / Tablet & Mobile แสดงแนวตั้ง 1 แถวเต็มพื้นที่ (col-12) -->
+    <section id="features" class="py-5 bg-white">
         <div class="container py-4">
             <div class="text-center mb-5">
-                <span class="text-danger fw-bold text-uppercase small">Our Branding Philosophy</span>
-                <h2 class="fw-bold mt-1">แนวคิดการสร้างแบรนด์ TaleWonder</h2>
-                <p class="text-muted mx-auto" style="max-width: 650px;">
-                    เราออกแบบทุกเรื่องเล่าและทุกฟีเจอร์ภายใต้แนวคิดหลัก 3 ประการ เพื่อมอบประสบการณ์การอ่านที่ดีที่สุดให้กับเด็กยุคใหม่
-                </p>
+                <span class="text-danger fw-bold text-uppercase small">Product Features</span>
+                <h2 class="fw-bold mt-1">จุดเด่นของแอปและร้านนิทาน TaleWonder</h2>
+                <p class="text-muted">คุณสมบัติพิเศษที่ช่วยให้การเล่านิทานสนุก มีชีวิตชีวา และเสริมพัฒนาการได้จริง</p>
             </div>
-
-            <div class="row g-4">
-                <!-- Pillar 1 -->
+            
+            <div class="row gy-4">
+                <!-- Feature 1 -->
                 <div class="col-12 col-lg-4">
-                    <div class="concept-card border p-4 h-100 text-center shadow-sm">
-                        <div class="icon-circle bg-danger bg-opacity-10 text-danger mb-3">
-                            <i class="bi bi-stars"></i>
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center rounded-4">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-magic"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">1. Interactive & AR Story</h4>
+                            <p class="text-muted mb-0">
+                                ตัวละครในนิทานขยับและโต้ตอบได้เมื่อแตะหน้าจอ พร้อมเอฟเฟกต์เสียงประกอบสุดสมจริง ช่วยกระตุ้นความสนใจและจินตนาการของเด็กๆ
+                            </p>
                         </div>
-                        <h4 class="fw-bold mb-2">1. Living Imagination</h4>
-                        <p class="text-danger small fw-semibold mb-3">จินตนาการที่มีชีวิตและโต้ตอบได้</p>
-                        <p class="text-muted mb-0">
-                            ทลายกรอบหนังสือแบบเดิม ให้เด็กๆ ได้สัมผัสตัวละครที่ขยับได้ มีเสียงประกอบสมจริง และส่อง AR เพื่อดูฉากอัศจรรย์แบบ 3 มิติ
-                        </p>
                     </div>
                 </div>
 
-                <!-- Pillar 2 -->
+                <!-- Feature 2 -->
                 <div class="col-12 col-lg-4">
-                    <div class="concept-card border p-4 h-100 text-center shadow-sm">
-                        <div class="icon-circle bg-warning bg-opacity-25 text-dark mb-3">
-                            <i class="bi bi-heart-fill text-danger"></i>
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center rounded-4">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-translate"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">2. เสียงพากย์ 2 ภาษา & เสียงคุณแม่</h4>
+                            <p class="text-muted mb-0">
+                                รองรับการฟังนิทานเสียงทั้งภาษาไทยและภาษาอังกฤษโดยนักพากย์มืออาชีพ พร้อมฟีเจอร์พิเศษให้คุณพ่อคุณแม่บันทึกเสียงตัวเองไว้เล่านิทานให้ลูกฟัง
+                            </p>
                         </div>
-                        <h4 class="fw-bold mb-2">2. Family Bonding</h4>
-                        <p class="text-danger small fw-semibold mb-3">เชื่อมสายใยรักในครอบครัว</p>
-                        <p class="text-muted mb-0">
-                            เราเชื่อว่าเสียงที่ลูกชอบที่สุดคือเสียงของพ่อแม่ จึงมีระบบบันทึกเสียงผู้ปกครองลงในนิทาน พร้อมหนังสือปกแข็งสำหรับอ่านด้วยกันก่อนนอน
-                        </p>
                     </div>
                 </div>
 
-                <!-- Pillar 3 -->
+                <!-- Feature 3 -->
                 <div class="col-12 col-lg-4">
-                    <div class="concept-card border p-4 h-100 text-center shadow-sm">
-                        <div class="icon-circle bg-info bg-opacity-10 text-primary mb-3">
-                            <i class="bi bi-mortarboard-fill"></i>
-                        </div>
-                        <h4 class="fw-bold mb-2">3. Tailored Growth</h4>
-                        <p class="text-danger small fw-semibold mb-3">เติบโตสมวัยทั้งภาษาและอารมณ์</p>
-                        <p class="text-muted mb-0">
-                            นิทานทุกเรื่องผ่านการออกแบบร่วมกับนักจิตวิทยาเด็ก เพื่อฝึกทักษะ EF การคิดวิเคราะห์ และการซึมซับภาษาอังกฤษอย่างเป็นธรรมชาติ
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= 3. STORYBOOK SHOWCASE (แนะนำนิทานในเว็บ) ================= -->
-    <section id="story-showcase" class="py-5" style="background-color: #fff6e5;">
-        <div class="container py-4">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
-                <div>
-                    <span class="badge bg-warning text-dark rounded-pill px-3 py-2 mb-2">คลังนิทานของเรา</span>
-                    <h2 class="fw-bold mb-0">แนะนำหมวดหมู่นิทานยอดนิยมใน TaleWonder</h2>
-                </div>
-                <a href="index.html#pricing" class="btn btn-outline-danger rounded-pill mt-3 mt-md-0">
-                    ดูแพ็คเกจการอ่านทั้งหมด <i class="bi bi-chevron-right"></i>
-                </a>
-            </div>
-
-            <div class="row g-4">
-                <!-- Story 1 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card book-card border-0 shadow-sm h-100">
-                        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" class="book-cover" alt="นิทานผจญภัย AR">
-                        <div class="card-body p-4">
-                            <div class="d-flex gap-2 mb-2">
-                                <span class="badge bg-danger bg-opacity-10 text-danger">AR 3D Story</span>
-                                <span class="badge bg-secondary bg-opacity-10 text-secondary">วัย 4-7 ปี</span>
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center rounded-4">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-person-hearts"></i>
                             </div>
-                            <h5 class="fw-bold">การผจญภัยของกระต่ายน้อยนักสำรวจดาว</h5>
-                            <p class="text-muted small mb-3">
-                                นิทานแนววิทยาศาสตร์และจินตนาการ ที่เด็กๆ สามารถแตะหน้าจอเพื่อช่วยกระต่ายน้อยค้นหาดวงดาวและเรียนรู้เรื่องระบบสุริยะ
+                            <h4 class="fw-bold mb-3">3. ระบบคัดกรองนิทานตามช่วงวัย</h4>
+                            <p class="text-muted mb-0">
+                                จัดหมวดหมู่นิทานตามระดับพัฒนาการสมองและอารมณ์ (EF) ตั้งแต่ 0-3 ขวบ, 4-6 ขวบ และ 7 ขวบขึ้นไป เพื่อให้เด็กได้รับเนื้อหาที่เหมาะสมที่สุด
                             </p>
-                            <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                                <small class="text-success fw-semibold"><i class="bi bi-volume-up-fill me-1"></i>มีเสียงพากย์ 2 ภาษา</small>
-                                <a href="index.html" class="btn btn-sm btn-brand rounded-pill px-3">ทดลองอ่าน</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Story 2 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card book-card border-0 shadow-sm h-100">
-                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80" class="book-cover" alt="นิทานก่อนนอน">
-                        <div class="card-body p-4">
-                            <div class="d-flex gap-2 mb-2">
-                                <span class="badge bg-primary bg-opacity-10 text-primary">Bedtime Audio</span>
-                                <span class="badge bg-secondary bg-opacity-10 text-secondary">วัย 1-5 ปี</span>
-                            </div>
-                            <h5 class="fw-bold">เพลงกล่อมของคุณหมีแห่งป่าแสงจันทร์</h5>
-                            <p class="text-muted small mb-3">
-                                นิทานภาพสีน้ำแสนอบอุ่นพร้อมดนตรีบรรเลงกล่อมนอน ช่วยให้เด็กๆ ผ่อนคลายและหลับฝันดี สามารถอัดเสียงคุณแม่แทนผู้บรรยายได้
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                                <small class="text-primary fw-semibold"><i class="bi bi-mic-fill me-1"></i>รองรับโหมดเสียงคุณแม่</small>
-                                <a href="index.html" class="btn btn-sm btn-brand rounded-pill px-3">ทดลองอ่าน</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Story 3 -->
-                <div class="col-12 col-md-12 col-lg-4">
-                    <div class="card book-card border-0 shadow-sm h-100">
-                        <img src="https://images.unsplash.com/photo-1474932430478-367dbb6832c1?auto=format&fit=crop&w=600&q=80" class="book-cover" alt="นิทานสั่งพิมพ์ชื่อลูก">
-                        <div class="card-body p-4">
-                            <div class="d-flex gap-2 mb-2">
-                                <span class="badge bg-warning text-dark">Custom Hardcover</span>
-                                <span class="badge bg-secondary bg-opacity-10 text-secondary">ทุกช่วงวัย</span>
-                            </div>
-                            <h5 class="fw-bold">ผู้กล้าตัวน้อยกับภารกิจกู้คืนอาณาจักรสีรุ้ง</h5>
-                            <p class="text-muted small mb-3">
-                                หนังสือนิทานปกแข็งสุดพิเศษที่คุณสามารถพิมพ์ "ชื่อและคาแรกเตอร์ของลูกน้อย" ลงไปเป็นตัวเอกของเรื่อง เพื่อสร้างความภูมิใจและรักการอ่าน
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                                <small class="text-danger fw-semibold"><i class="bi bi-box-seam-fill me-1"></i>สั่งพิมพ์ส่งถึงบ้าน</small>
-                                <a href="index.html" class="btn btn-sm btn-brand rounded-pill px-3">สั่งทำหนังสือ</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -310,25 +295,578 @@
         </div>
     </section>
 
-    <!-- ================= 4. PORTAL TO MAIN WEBSITE ================= -->
-    <section class="py-5 bg-dark text-white text-center">
+    <!-- ================= 4. รายการแนะนำนิทานแต่ละช่วงอายุ (AGE GROUPS) ================= -->
+    <!-- เงื่อนไข: แบ่งเป็น 0 - 3 ขวบ / 4 - 6 ขวบ / 7 ขวบขึ้นไป -->
+    <section id="age-stories" class="py-5" style="background-color: #fff6e5;">
         <div class="container py-4">
-            <h2 class="fw-bold mb-3">พร้อมออกเดินทางสู่โลกแห่งนิทานหรือยัง?</h2>
-            <p class="text-secondary mb-4 mx-auto" style="max-width: 600px;">
-                เข้าสู่หน้าหลักของเว็บไซต์เพื่อดูรายละเอียดฟีเจอร์ทั้งหมด แพ็คเกจสมาชิก รีวิวจากผู้ปกครอง และทำความรู้จักกับทีมผู้พัฒนาของเรา
+            <div class="text-center mb-5">
+                <span class="badge bg-danger rounded-pill px-3 py-2 mb-2">Recommended by Age</span>
+                <h2 class="fw-bold">รายการแนะนำหนังสือนิทานแยกตามช่วงอายุ</h2>
+                <p class="text-muted">เลือกนิทานที่ออกแบบมาให้ตรงกับพัฒนาการของลูกน้อยในแต่ละวัย</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- ช่วงอายุที่ 1: 0 - 3 ขวบ -->
+                <div class="col-12 col-lg-4">
+                    <div class="card age-card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80" class="age-img" alt="นิทานสำหรับเด็ก 0-3 ขวบ">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="mb-2">
+                                <span class="badge bg-info text-dark rounded-pill px-3 py-1 fw-bold fs-6">
+                                    👶 ช่วงอายุ 0 - 3 ขวบ
+                                </span>
+                            </div>
+                            <h4 class="fw-bold mt-2">วัยเริ่มต้นสัมผัสและจดจำเสียง</h4>
+                            <p class="text-muted small mb-3">
+                                เน้นนิทานภาพสีสันสดใส คำคล้องจองสั้นๆ เสียงดนตรีกล่อมนอน และเรื่องราวเกี่ยวกับกิจวัตรประจำวัน เพื่อกระตุ้นประสาทสัมผัสและการพูด
+                            </p>
+                            <div class="bg-light rounded-3 p-3 mb-4 mt-auto">
+                                <h6 class="fw-bold small text-danger mb-2"><i class="bi bi-bookmark-star-fill me-1"></i>นิทานแนะนำในหมวดนี้:</h6>
+                                <ul class="list-unstyled small mb-0 text-secondary">
+                                    <li class="mb-1">• กุ๋งกิ๋งอาบน้ำป๋อมแป๋ม (ฝึกกิจวัตร)</li>
+                                    <li class="mb-1">• เพลงกล่อมคุณหมีแห่งป่าแสงจันทร์ (นิทานเสียง)</li>
+                                    <li>• สีสันแสนสนุกของเจ้าลูกเจี๊ยบ (เรียนรู้สีและรูปทรง)</li>
+                                </ul>
+                            </div>
+                            <a href="Shoptale.html" class="btn btn-outline-danger rounded-pill w-100">เลือกอ่านหมวด 0 - 3 ขวบ</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ช่วงอายุที่ 2: 4 - 6 ขวบ -->
+                <div class="col-12 col-lg-4">
+                    <div class="card age-card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80" class="age-img" alt="นิทานสำหรับเด็ก 4-6 ขวบ">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="mb-2">
+                                <span class="badge bg-warning text-dark rounded-pill px-3 py-1 fw-bold fs-6">
+                                    🎨 ช่วงอายุ 4 - 6 ขวบ
+                                </span>
+                            </div>
+                            <h4 class="fw-bold mt-2">วัยแห่งจินตนาการและการเข้าสังคม</h4>
+                            <p class="text-muted small mb-3">
+                                เน้นนิทานแนวผจญภัยแฟนตาซี การแบ่งปัน การจัดการอารมณ์ (EF) และการเรียนรู้คำศัพท์ 2 ภาษาผ่านตัวละครที่โต้ตอบได้
+                            </p>
+                            <div class="bg-light rounded-3 p-3 mb-4 mt-auto">
+                                <h6 class="fw-bold small text-danger mb-2"><i class="bi bi-bookmark-star-fill me-1"></i>นิทานแนะนำในหมวดนี้:</h6>
+                                <ul class="list-unstyled small mb-0 text-secondary">
+                                    <li class="mb-1">• กระต่ายน้อยนักสำรวจดวงดาว (Interactive AR)</li>
+                                    <li class="mb-1">• ไดโนเสาร์น้อยหัดแบ่งปัน (ฝึกทักษะสังคม)</li>
+                                    <li>• ร้านขนมเวทมนตร์ 2 ภาษา (ฝึกศัพท์อังกฤษ)</li>
+                                </ul>
+                            </div>
+                            <a href="Shoptale.html" class="btn btn-outline-danger rounded-pill w-100">เลือกอ่านหมวด 4 - 6 ขวบ</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ช่วงอายุที่ 3: 7 ขวบขึ้นไป -->
+                <div class="col-12 col-lg-4">
+                    <div class="card age-card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1474932430478-367dbb6832c1?auto=format&fit=crop&w=600&q=80" class="age-img" alt="นิทานสำหรับเด็ก 7 ขวบขึ้นไป">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="mb-2">
+                                <span class="badge bg-success text-white rounded-pill px-3 py-1 fw-bold fs-6">
+                                    🚀 ช่วงอายุ 7 ขวบขึ้นไป
+                                </span>
+                            </div>
+                            <h4 class="fw-bold mt-2">วัยคิดวิเคราะห์และนักอ่านรุ่นเยาว์</h4>
+                            <p class="text-muted small mb-3">
+                                เน้นวรรณกรรมเยาวชน นิทานสืบสวนสอบสวน นิทานวิทยาศาสตร์และประวัติศาสตร์ ที่เด็กสามารถเลือกทางเดินของเนื้อเรื่องเองได้
+                            </p>
+                            <div class="bg-light rounded-3 p-3 mb-4 mt-auto">
+                                <h6 class="fw-bold small text-danger mb-2"><i class="bi bi-bookmark-star-fill me-1"></i>นิทานแนะนำในหมวดนี้:</h6>
+                                <ul class="list-unstyled small mb-0 text-secondary">
+                                    <li class="mb-1">• ผู้กล้าตัวน้อยกู้คืนอาณาจักรสีรุ้ง (เลือกตอนจบได้)</li>
+                                    <li class="mb-1">• นักสืบจิ๋วไขปริศนาพิพิธภัณฑ์ลึกลับ (ฝึกตรรกะ)</li>
+                                    <li>• ความลับของมหาสมุทรและสัตว์โลก (สารคดีนิทาน)</li>
+                                </ul>
+                            </div>
+                            <a href="Shoptale.html" class="btn btn-outline-danger rounded-pill w-100">เลือกอ่านหมวด 7 ขวบขึ้นไป</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 5. TESTIMONIALS SECTION (คำรับรองจากลูกค้า) ================= -->
+    <section id="testimonials" class="py-5 bg-white">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">คำรับรองจากผู้ใช้งานจริง </h2>
+                <p class="text-muted">ความประทับใจจากคุณพ่อคุณแม่และคุณครูที่เลือกใช้ TaleWonder</p>
+            </div>
+            <div class="row gy-4">
+                <div class="col-12 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 rounded-4 bg-light">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-secondary fst-italic">
+                            "ชอบที่มีการแบ่งหมวดนิทานตามอายุชัดเจนมากค่ะ ลูกคนเล็ก 2 ขวบ กับคนโต 5 ขวบ สามารถเลือกโหมดนิทานที่เหมาะกับวัยของตัวเองได้เลย"
+                        </p>
+                        <div class="d-flex align-items-center mt-auto pt-3">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="User 1" class="rounded-circle me-3" width="50" height="50" style="object-fit: cover;">
+                            <div>
+                                <h6 class="fw-bold mb-0">คุณแม่พลอยไพลิน</h6>
+                                <small class="text-muted">สมาชิกแพ็กเกจ Premium</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 rounded-4 bg-light">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-secondary fst-italic">
+                            "เริ่มต้นจากลองอ่านฟรีในแพ็กเกจ Basic 0 บาท ลูกชอบมากจนตอนนี้สมัคร Standard 150 บาท อ่านวันละ 15 เรื่องคุ้มสุดๆ ครับ"
+                        </p>
+                        <div class="d-flex align-items-center mt-auto pt-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="User 2" class="rounded-circle me-3" width="50" height="50" style="object-fit: cover;">
+                            <div>
+                                <h6 class="fw-bold mb-0">คุณพ่อธนภัทร</h6>
+                                <small class="text-muted">สมาชิกแพ็กเกจ Standard</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 rounded-4 bg-light">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-secondary fst-italic">
+                            "นิทานหมวด 7 ขวบขึ้นไปมีเกมตอบคำถามท้ายเรื่องและให้เด็กฝึกคิดวิเคราะห์ได้ดีมาก นำไปใช้เปิดสอนในห้องเรียนเด็กๆ ตื่นเต้นกันใหญ่เลยค่ะ"
+                        </p>
+                        <div class="d-flex align-items-center mt-auto pt-3">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80" alt="User 3" class="rounded-circle me-3" width="50" height="50" style="object-fit: cover;">
+                            <div>
+                                <h6 class="fw-bold mb-0">คุณครูพิมพ์ชนก</h6>
+                                <small class="text-muted">ครูประจำชั้นประถมศึกษา</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 6. PRICE LIST / PACKAGE SECTION (20 คะแนน) ================= -->
+    <!-- เงื่อนไข: Basic 0 บาท / Standard 150 บาท / Premium 550 บาท -->
+    <section id="pricing" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="text-danger fw-bold text-uppercase small">Pricing Plans</span>
+                <h2 class="fw-bold mt-1">รายการแนะนำแพ็กเกจสมาชิก </h2>
+                <p class="text-muted">เปรียบเทียบความคุ้มค่าและเลือกแพ็กเกจการอ่านที่ตรงใจครอบครัวของคุณ</p>
+            </div>
+
+            <div class="row gy-4 align-items-stretch">
+                <!-- Package 1: Basic 0 บาท -->
+                <div class="col-12 col-lg-4">
+                    <div class="card border rounded-4 p-4 h-100 shadow-sm bg-white">
+                        <div class="card-body d-flex flex-column text-center">
+                            <h5 class="fw-bold text-secondary">Basic Package</h5>
+                            <h2 class="display-5 fw-bold my-3">0 <small class="fs-5 text-muted fw-normal">บาท</small></h2>
+                            <p class="text-muted small">สำหรับผู้เริ่มต้นทดลองสัมผัสโลกแห่งนิทาน</p>
+                            <hr>
+                            <ul class="list-unstyled text-start my-4 flex-grow-1">
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>อ่านนิทานฟรี 1 เรื่อง/วัน</strong> (จากหมวดแนะนำประจำวัน)</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>เข้าถึงหมวดนิทานพื้นฐานทั้ง 3 ช่วงอายุ (0-3, 4-6, 7+ ขวบ)</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>ระบบเสียงพากย์ภาษาไทยมาตรฐาน</li>
+                                <li class="mb-3 text-muted"><i class="bi bi-x-circle me-2"></i>ไม่รองรับการเลือกโหมดนิทานพิเศษและ 2 ภาษา</li>
+                                <li class="mb-3 text-muted"><i class="bi bi-x-circle me-2"></i>ไม่สามารถดาวน์โหลดไว้อ่านแบบออฟไลน์ได้</li>
+                            </ul>
+                            <a  id="btnBasic0" class="btn btn-outline-danger w-100 rounded-pill py-2 fw-semibold">เริ่มต้นใช้งานฟรี</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 2: Standard 150 บาท -->
+                <div class="col-12 col-lg-4">
+                    <div class="card border-danger border-2 rounded-4 p-4 h-100 shadow bg-white position-relative">
+                        <div class="card-body d-flex flex-column text-center">
+                            <span class="badge bg-danger rounded-pill px-3 py-1 mb-2 align-self-center">คุ้มค่ายอดนิยม (Popular)</span>
+                            <h5 class="fw-bold text-danger">Standard Package</h5>
+                            <h2 class="display-5 fw-bold my-3">150 <small class="fs-5 text-muted fw-normal">บาท / เดือน</small></h2>
+                            <p class="text-muted small">อิ่มเอมกับนิทานหลากหลายโหมดทุกวัน</p>
+                            <hr>
+                            <ul class="list-unstyled text-start my-4 flex-grow-1">
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>อ่านนิทานได้สูงสุด 15 เรื่อง/วัน</strong></li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>เข้าโหมดเลือกนิทานได้เพิ่มขึ้น</strong> (โหมดนิทานก่อนนอน, โหมดนิทานฝึก EF และโหมด 2 ภาษา ไทย-อังกฤษ)</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>ใช้งานระบบค้นหาและกรองนิทานตามช่วงอายุได้อิสระ</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>ไม่มีโฆษณาคั่นระหว่างการเล่านิทาน</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>รับส่วนลด 10% เมื่อสั่งซื้อหนังสือนิทานเล่มจริง</li>
+                            </ul>
+                            <a id="btnStandard150" class="btn btn-brand w-100 rounded-pill py-2 fw-semibold shadow-sm">สมัครแพ็กเกจ 150 บาท</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3: Premium 550 บาท -->
+                <div class="col-12 col-lg-4">
+                    <div class="card border rounded-4 p-4 h-100 shadow-sm bg-white">
+                        <div class="card-body d-flex flex-column text-center">
+                            <span class="badge bg-warning text-dark rounded-pill px-3 py-1 mb-2 align-self-center">จัดเต็มระดับ VIP</span>
+                            <h5 class="fw-bold text-dark">Premium Package</h5>
+                            <h2 class="display-5 fw-bold my-3">550 <small class="fs-5 text-muted fw-normal">บาท / เดือน</small></h2>
+                            <p class="text-muted small">ปลดล็อกทุกโหมดนิทานไร้ขีดจำกัดสำหรับครอบครัว</p>
+                            <hr>
+                            <ul class="list-unstyled text-start my-4 flex-grow-1">
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>อ่านนิทานได้จุใจถึง 55 เรื่อง/วัน</strong></li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>เข้าโหมดนิทานได้ไม่จำกัดทุกหมวดหมู่</strong> (รวมโหมด Interactive AR 3D และนิทานเลือกตอนจบได้)</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>ปลดล็อกฟีเจอร์บันทึกเสียงคุณพ่อคุณแม่เล่านิทานได้ไม่จำกัด</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>ดาวน์โหลดนิทานเก็บไว้อ่านและฟังแบบ Offline ได้</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>สร้างโปรไฟล์แยกตามช่วงอายุลูกได้สูงสุด 4 บัญชี พร้อมส่วนลดหนังสือปกแข็ง 25%</li>
+                            </ul>
+                            <a id="btnPremium550" class="btn btn-outline-dark w-100 rounded-pill py-2 fw-semibold">สมัครแพ็กเกจ 550 บาท</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 7. CALL FOR ACTION (CTA) ================= -->
+    <section id="cta" class="cta-section py-5 text-center">
+        <div class="container py-4">
+            <h2 class="fw-bold display-6 mb-3">เริ่มต้นประสบการณ์เล่านิทานสุดพิเศษกับเราเลย!</h2>
+            <p class="lead mb-4 mx-auto" style="max-width: 650px;">
+                สมัครสมาชิกวันนี้ เริ่มต้นที่แพ็กเกจ Basic 0 บาท ทดลองอ่านนิทานตามช่วงวัยได้ฟรีทันที หรืออัปเกรดเพื่อปลดล็อกคลังนิทานคุณภาพกว่า 1,000 เรื่อง
             </p>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="index.html" class="btn btn-brand btn-lg rounded-pill px-5 fw-bold">
-                    เข้าสู่เว็บไซต์หลัก (Main Page) <i class="bi bi-arrow-right-circle ms-1"></i>
-                </a>
-                <a href="team-member.html" class="btn btn-outline-light btn-lg rounded-pill px-4">
-                    รู้จักทีมผู้ก่อตั้ง (About Team)
+                <a href="index.html#pricing"class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-danger shadow">
+                    สมัครสมาชิกตอนนี้
                 </a>
             </div>
         </div>
     </section>
+
+    <!-- ================= 8. SOCIAL LINK SECTION (10 คะแนน) ================= -->
+    <footer id="social" class="bg-dark text-white py-5">
+        <div class="container text-center">
+            <h4 class="fw-bold mb-2">ติดตามเราบนโซเชียลมีเดีย!</h4>
+            <p class="text-secondary mb-4">
+                ไม่พลาดทุกการอัปเดตหนังสือนิทานเรื่องใหม่ กิจกรรมส่งเสริมการอ่าน และโปรโมชั่นพิเศษจาก TaleWonder
+            </p>
+            
+            <!-- ปุ่มลิงก์ไปยังโซเชียลมีเดีย (เชื่อมไปยังเว็บ PIM ตามเงื่อนไขโจทย์) -->
+            <div class="d-flex justify-content-center gap-3 mb-4">
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Twitter">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="LinkedIn">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+            </div>
+
+            <hr class="border-secondary my-4">
+            <p class="small text-secondary mb-0">
+                &copy; 2026 TaleWonder Studio Co., Ltd. All Rights Reserved. | TaleWonder Group • CAI 
+            </p>
+        </div>
+    </footer>
+
+    <!-- ================= 9. หน้าต่างระบบลงทะเบียน (REGISTRATION MODAL) ================= -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+                <div class="modal-header modal-welcome-header border-0 p-4">
+                    <h5 class="modal-title fw-bold" id="registerModalLabel">
+                        <i class="bi bi-person-plus-fill me-2"></i>ลงทะเบียนสมาชิก TaleWonder
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="registerForm">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label for="regFirstName" class="form-label fw-semibold">ชื่อ <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control rounded-3" id="regFirstName" placeholder="กรอกชื่อจริง" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="regLastName" class="form-label fw-semibold">นามสกุล <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control rounded-3" id="regLastName" placeholder="กรอกนามสกุล" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="regEmail" class="form-label fw-semibold">อีเมล <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control rounded-3" id="regEmail" placeholder="example@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="regPassword" class="form-label fw-semibold">Password <span class="text-danger">*</span></label>
+                            <input type="password" class="form-control rounded-3" id="regPassword" placeholder="ตั้งรหัสผ่านของคุณ" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 px-4 pb-4 pt-0">
+                        <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-brand rounded-pill px-4">ดำเนินการต่อ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 10. หน้าต่างยืนยันความถูกต้องของข้อมูล (CONFIRMATION MODAL) ================= -->
+    <div class="modal fade" id="confirmRegisterModal" tabindex="-1" aria-labelledby="confirmRegisterModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+                <div class="modal-header bg-warning text-dark border-0 p-4">
+                    <h5 class="modal-title fw-bold" id="confirmRegisterModalLabel">
+                        <i class="bi bi-check2-circle me-2"></i>ยืนยันความถูกต้องของข้อมูล
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-secondary mb-3">กรุณาตรวจสอบข้อมูลของคุณว่าถูกต้องหรือไม่ก่อนยืนยันการลงทะเบียน:</p>
+                    <div class="bg-light rounded-3 p-3 mb-2">
+                        <p class="mb-2"><strong>ชื่อ:</strong> <span id="confFirstName"></span></p>
+                        <p class="mb-2"><strong>นามสกุล:</strong> <span id="confLastName"></span></p>
+                        <p class="mb-2"><strong>อีเมล:</strong> <span id="confEmail"></span></p>
+                        <p class="mb-0"><strong>Password:</strong> <span id="confPassword"></span></p>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 px-4 pb-4 pt-0">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" id="btnBackToEdit">แก้ไขข้อมูล</button>
+                    <button type="button" class="btn btn-brand rounded-pill px-4" id="btnConfirmSave">ยืนยันข้อมูลถูกต้อง</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- สคริปต์สำหรับเปิดหน้าต่างแนะนำเว็บไซต์ (Welcome Modal) อัตโนมัติเมื่อเข้าหน้าเว็บ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+            welcomeModal.show();
+        });
+    </script>
+
+    <!-- ================= สคริปต์ระบบลงทะเบียน เชื่อมสถานะทุก Page + Package + Logout ================= -->
+    <script>
+        (function () {
+            const STORAGE_KEY = 'talewonder_user_session';
+            let pendingPackageAfterReg = null;
+
+            function getSession() {
+                try {
+                    const data = localStorage.getItem(STORAGE_KEY);
+                    return data ? JSON.parse(data) : null;
+                } catch (e) {
+                    return null;
+                }
+            }
+
+            function saveSession(userObj) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(userObj));
+                sessionStorage.setItem('talewonder_active_tab', 'true');
+            }
+
+            function clearSessionAndClose() {
+                localStorage.removeItem(STORAGE_KEY);
+                sessionStorage.removeItem('talewonder_active_tab');
+                window.close();
+                setTimeout(function () {
+                    document.body.innerHTML = '<div class="d-flex flex-column justify-content-center align-items-center vh-100 bg-dark text-white text-center p-4"><i class="bi bi-power display-1 text-danger mb-3"></i><h3 class="fw-bold">ออกจากระบบและปิดหน้าเว็บเรียบร้อยแล้ว</h3><p class="text-secondary">คุณไม่อยู่ในระบบ กรุณาปิดแท็บนี้หรือเข้าสู่หน้าหลักใหม่</p><a href="index.html" class="btn btn-danger rounded-pill px-4 mt-2">กลับหน้าหลัก</a></div>';
+                }, 150);
+            }
+
+            // อัปเดต UI บน Navbar ให้แสดงชื่อผู้ใช้ สถานะ Package และปุ่ม Logout
+            function renderAuthNavbar() {
+                const navAuthArea = document.getElementById('navAuthArea');
+                if (!navAuthArea) return;
+
+                const user = getSession();
+                if (user && user.loggedIn) {
+                    const pkgText = user.packageName ? user.packageName : 'Basic (0 บาท)';
+                    navAuthArea.innerHTML = `
+                        <div class="d-flex flex-wrap align-items-center gap-2 my-2 my-xl-0">
+                            <span class="badge bg-light text-dark border rounded-pill px-3 py-2">
+                                <i class="bi bi-person-check-fill text-success me-1"></i>${user.firstName} ${user.lastName}
+                                <span class="badge bg-danger rounded-pill ms-1">${pkgText}</span>
+                            </span>
+                            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3" id="btnLogout">
+                                <i class="bi bi-box-arrow-right me-1"></i>Logout
+                            </button>
+                        </div>
+                    `;
+                    document.getElementById('btnLogout').addEventListener('click', function () {
+                        clearSessionAndClose();
+                    });
+                } else {
+                    navAuthArea.innerHTML = `
+                        <button type="button" class="btn btn-brand btn-sm rounded-pill px-3 py-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            <i class="bi bi-people-fill me-1"></i> สมัครสมาชิก
+                        </button>
+                    `;
+                }
+            }
+
+            // ฟังก์ชันกลางสำหรับอัปเดตสถานะ Package (เชื่อมกับทุกหน้า)
+            window.updateTaleWonderPackage = function (pkgName) {
+                const user = getSession();
+                if (!user || !user.loggedIn) {
+                    pendingPackageAfterReg = pkgName;
+                    const regModalEl = document.getElementById('registerModal');
+                    if (regModalEl) {
+                        bootstrap.Modal.getOrCreateInstance(regModalEl).show();
+                    }
+                    return false;
+                }
+                user.packageName = pkgName;
+                saveSession(user);
+                renderAuthNavbar();
+                return true;
+            };
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const registerModalEl = document.getElementById('registerModal');
+                const confirmModalEl = document.getElementById('confirmRegisterModal');
+                const registerForm = document.getElementById('registerForm');
+
+                // ตรวจสอบการเปิดหน้าอื่นๆ หากไม่ได้อยู่ในระบบให้ปิดหน้าอัตโนมัติ
+                const currentPath = window.location.pathname;
+                const isProtectedPage = /Package\.html|Shoptale\.html|team-member\.html|Tale_Rubbit\.html/i.test(currentPath);
+                const currentUser = getSession();
+
+                if (isProtectedPage && (!currentUser || !currentUser.loggedIn)) {
+                    clearSessionAndClose();
+                    return;
+                }
+
+                renderAuthNavbar();
+
+                // จัดการส่งฟอร์มลงทะเบียน -> เปิดหน้าต่างยืนยันข้อมูล
+                if (registerForm) {
+                    registerForm.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        document.getElementById('confFirstName').textContent = document.getElementById('regFirstName').value.trim();
+                        document.getElementById('confLastName').textContent = document.getElementById('regLastName').value.trim();
+                        document.getElementById('confEmail').textContent = document.getElementById('regEmail').value.trim();
+                        document.getElementById('confPassword').textContent = document.getElementById('regPassword').value;
+
+                        bootstrap.Modal.getOrCreateInstance(registerModalEl).hide();
+                        bootstrap.Modal.getOrCreateInstance(confirmModalEl).show();
+                    });
+                }
+
+                // ปุ่มกลับไปแก้ไขข้อมูล
+                const btnBackToEdit = document.getElementById('btnBackToEdit');
+                if (btnBackToEdit) {
+                    btnBackToEdit.addEventListener('click', function () {
+                        bootstrap.Modal.getOrCreateInstance(confirmModalEl).hide();
+                        bootstrap.Modal.getOrCreateInstance(registerModalEl).show();
+                    });
+                }
+
+                // ปุ่มยืนยันข้อมูลถูกต้อง -> บันทึกสถานะลงทะเบียนและแพ็กเกจ
+                const btnConfirmSave = document.getElementById('btnConfirmSave');
+                if (btnConfirmSave) {
+                    btnConfirmSave.addEventListener('click', function () {
+                        const existing = getSession();
+                        const newUser = {
+                            firstName: document.getElementById('regFirstName').value.trim(),
+                            lastName: document.getElementById('regLastName').value.trim(),
+                            email: document.getElementById('regEmail').value.trim(),
+                            password: document.getElementById('regPassword').value,
+                            packageName: pendingPackageAfterReg || (existing && existing.packageName) || 'Basic (0 บาท)',
+                            loggedIn: true
+                        };
+                        saveSession(newUser);
+                        pendingPackageAfterReg = null;
+                        bootstrap.Modal.getOrCreateInstance(confirmModalEl).hide();
+                        registerForm.reset();
+                        renderAuthNavbar();
+                    });
+                }
+
+                // เชื่อมปุ่มเลือกแพ็กเกจในหน้า index.html ให้บันทึกสถานะ Package ทันที
+                const pricingButtons = document.querySelectorAll('#pricing a.btn');
+                pricingButtons.forEach(function (btn, idx) {
+                    btn.addEventListener('click', function (e) {
+                        const pkgNames = ['Basic (0 บาท)', 'Standard (150 บาท)', 'Premium (550 บาท)'];
+                        const chosenPkg = pkgNames[idx] || 'Basic (0 บาท)';
+                        const user = getSession();
+                        if (!user || !user.loggedIn) {
+                            e.preventDefault();
+                            window.updateTaleWonderPackage(chosenPkg);
+                        } else if (idx === 0) {
+                            e.preventDefault();
+                            window.updateTaleWonderPackage(chosenPkg);
+                        }
+                    });
+                });
+
+                // ซิงค์สถานะอัตโนมัติเมื่อมีการเปลี่ยนค่าจากหน้าอื่น (index.html, Package.html, Shoptale.html, team-member.html, PretaleStory/Tale_Rubbit.html)
+                window.addEventListener('storage', function (e) {
+                    if (e.key === STORAGE_KEY) {
+                        const updatedUser = getSession();
+                        if (!updatedUser || !updatedUser.loggedIn) {
+                            clearSessionAndClose();
+                        } else {
+                            renderAuthNavbar();
+                        }
+                    }
+                });
+            });
+        })();
+    </script>
+    <script>
+    (function () {
+        const STORAGE_KEY = 'talewonder_user_session';
+
+        // ฟังก์ชันเปลี่ยนปุ่ม 550 บาทเป็นสีเข้ม (btn-dark) เมื่อชำระเงินแล้ว
+        function updatePremiumButtonState() {
+            const btn550 = document.getElementById('btnPremium550') || 
+                           Array.from(document.querySelectorAll('a.btn')).find(el => el.textContent.includes('550'));
+            if (!btn550) return;
+
+            try {
+                const user = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (user && user.loggedIn && user.packageName && user.packageName.includes('550')) {
+                    btn550.classList.remove('btn-outline-dark');
+                    btn550.classList.add('btn-dark', 'text-white');
+                } else {
+                    btn550.classList.remove('btn-dark', 'text-white');
+                    btn550.classList.add('btn-outline-dark');
+                }
+            } catch (e) {}
+        }
+
+        // เรียกใช้ฟังก์ชันนี้เมื่อชำระเงินแพ็กเกจ 550 บาทเสร็จสิ้น
+        window.markPremium550Paid = function () {
+            if (typeof window.updateTaleWonderPackage === 'function') {
+                const ok = window.updateTaleWonderPackage('Premium (550 บาท)');
+                if (!ok) return;
+            } else {
+                const user = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+                user.packageName = 'Premium (550 บาท)';
+                user.loggedIn = true;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+            }
+            updatePremiumButtonState();
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updatePremiumButtonState();
+
+            // ซิงค์สีปุ่มอัตโนมัติเมื่อชำระเงินเสร็จจากหน้า Package.html
+            window.addEventListener('storage', function (e) {
+                if (e.key === STORAGE_KEY) {
+                    updatePremiumButtonState();
+                }
+            });
+        });
+    })();
+</script>
 </body>
 </html>
