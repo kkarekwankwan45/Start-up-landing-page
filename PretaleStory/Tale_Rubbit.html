@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การผจญภัยของกระต่ายน้อยนักสำรวจดาว - พรีวิวและอ่าน E-Book | TaleWonder</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts (Prompt) -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-primary: #ff6b6b;
+            --brand-hover: #ee5253;
+            --brand-soft: #fff0f0;
+            --brand-cream: #fffdf9;
+            --brand-warm: #fff6e5;
+            --text-dark: #2d3436;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--brand-cream);
+            scroll-behavior: smooth;
+            padding-top: 76px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+        }
+        .btn-brand {
+            background-color: var(--brand-primary);
+            border-color: var(--brand-primary);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .btn-brand:hover {
+            background-color: var(--brand-hover);
+            border-color: var(--brand-hover);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Header Breadcrumb Banner */
+        .preview-header {
+            background: linear-gradient(135deg, #fff6e5 0%, #ffe8cc 100%);
+            padding: 40px 0;
+            border-bottom: 1px solid #ffe0b2;
+        }
+
+        /* Book Preview Carousel */
+        .preview-carousel {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            border: 5px solid #ffffff;
+            position: relative;
+        }
+        .preview-carousel img {
+            height: 450px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .carousel-caption-custom {
+            background: rgba(45, 52, 54, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 14px;
+            padding: 10px 16px;
+            bottom: 20px;
+        }
+
+        /* Favorite Heart Button */
+        .btn-favorite {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffd8d8;
+            background: #fff;
+            color: #ff6b6b;
+            font-size: 1.35rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.15);
+        }
+        .btn-favorite:hover {
+            transform: scale(1.08);
+            background: #fff0f0;
+        }
+        .btn-favorite.active {
+            background: #ff6b6b;
+            color: #fff;
+            border-color: #ff6b6b;
+        }
+
+        /* Format / E-Book Mode Selection Box */
+        .format-option {
+            border: 2px solid #dfe6e9;
+            border-radius: 18px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: #fff;
+        }
+        .format-option:hover, .format-option.active {
+            border-color: var(--brand-primary);
+            background-color: #fff6f6;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.12);
+        }
+
+        /* Table of Contents List */
+        .toc-item {
+            border-radius: 14px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: #fff;
+        }
+        .toc-item:hover {
+            background-color: #fff0f0;
+            border-color: #ff6b6b !important;
+            transform: translateX(4px);
+        }
+
+        /* E-Book Reader Box */
+        .ebook-page {
+            background: #fffcf5;
+            border-radius: 20px;
+            border: 2px solid #ffe8cc;
+            min-height: 420px;
+            box-shadow: inset 0 0 30px rgba(255, 218, 179, 0.35);
+        }
+
+        /* Interactive AR 3D Stage */
+        .ar-stage {
+            background: radial-gradient(circle at center, #1e272e 0%, #0f1419 100%);
+            border-radius: 24px;
+            min-height: 360px;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+            border: 3px solid #ffd32a;
+        }
+        .ar-stage.camera-sim {
+            background: linear-gradient(135deg, rgba(20, 30, 48, 0.88), rgba(36, 59, 85, 0.88)),
+                        url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+        }
+        .ar-3d-object {
+            width: 190px;
+            height: 190px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff200, #ff9f1a, #ff3838);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 0 50px rgba(255, 159, 26, 0.6);
+            transition: transform 0.35s ease;
+            transform-style: preserve-3d;
+            user-select: none;
+        }
+        .ar-grid-floor {
+            position: absolute;
+            bottom: -40px;
+            left: -10%;
+            right: -10%;
+            height: 120px;
+            background-image: linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+            background-size: 30px 30px;
+            transform: rotateX(65deg);
+        }
+
+        /* Scrollable Reviews Row */
+        .review-scroll-wrapper {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 1.25rem;
+            padding-bottom: 1rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #ff6b6b #ffe8cc;
+        }
+        .review-scroll-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+        .review-scroll-wrapper::-webkit-scrollbar-track {
+            background: #ffe8cc;
+            border-radius: 10px;
+        }
+        .review-scroll-wrapper::-webkit-scrollbar-thumb {
+            background: #ff6b6b;
+            border-radius: 10px;
+        }
+        .review-card-item {
+            flex: 0 0 340px;
+            scroll-snap-align: start;
+        }
+        .star-filter-row {
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+        .star-filter-row:hover, .star-filter-row.active {
+            background-color: #fff0f0;
+        }
+
+        /* Next Book Card */
+        .next-book-card {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .next-book-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08) !important;
+        }
+        .next-book-img {
+            height: 210px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Social Links Footer */
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            background-color: #ff6b6b;
+            color: white;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= 1. NAVBAR ================= -->
+    <nav class="navbar navbar-expand-xl navbar-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 text-danger nav-smart-link" data-page="index.html" href="index.html">
+                <i class="bi bi-book-half me-2"></i>TaleWonder
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-xl-center gap-xl-2">
+                    <li class="nav-item">
+                        <a class="nav-link nav-smart-link" data-page="index.html" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-smart-link" data-page="Shoptale.html" href="Shoptale.html">ร้านค้านิทาน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-danger nav-smart-link" data-page="PretaleStory/Tale_Rubbit.html" href="PretaleStory/Tale_Rubbit.html">พรีวิว & อ่านนิทาน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-smart-link" data-page="team-member.html" href="team-member.html">เกี่ยวกับเรา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-smart-link" data-page="Contact.html" href="Contact.html">ติดต่อเรา</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= 2. BREADCRUMB HEADER ================= -->
+    <header class="preview-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-danger text-decoration-none nav-smart-link" data-page="index.html">หน้าแรก</a></li>
+                    <li class="breadcrumb-item"><a href="Shoptale.html" class="text-danger text-decoration-none nav-smart-link" data-page="Shoptale.html">ร้านค้านิทาน</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">การผจญภัยของกระต่ายน้อยนักสำรวจดาว</li>
+                </ol>
+            </nav>
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                <div>
+                    <h1 class="fw-bold h2 mb-1">การผจญภัยของกระต่ายน้อยนักสำรวจดาว</h1>
+                    <p class="text-muted mb-0 small">
+                        <i class="bi bi-stars text-danger me-1"></i>นิทานภาพ E-Book เสริมจินตนาการ • โหมด 2 ภาษา (TH-EN) • เสียงพากย์ภาษาอังกฤษ (EN) • Interactive AR 3D & มินิเกมท้ายเรื่อง
+                    </p>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                    <span class="badge bg-warning text-dark rounded-pill px-3 py-2 fs-6">
+                        <i class="bi bi-journal-richtext me-1"></i>E-Book ครบ 5 ตอน
+                    </span>
+                    <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">
+                        <i class="bi bi-book-half me-1"></i>เปิดอ่านแล้ว <span id="headerReadCount">3</span> ครั้ง
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= 3. BOOK COVER CAROUSEL & OVERVIEW INFO ================= -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-5 align-items-start">
+                
+                <!-- ฝั่งซ้าย: Carousel หน้าปกหนังสือและภาพพรีวิวด้านใน -->
+                <div class="col-12 col-lg-6">
+                    <div id="bookPreviewCarousel" class="carousel slide preview-carousel" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#bookPreviewCarousel" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#bookPreviewCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#bookPreviewCarousel" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#bookPreviewCarousel" data-bs-slide-to="3"></button>
+                        </div>
+
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80" alt="หน้าปก E-Book การผจญภัยของกระต่ายน้อยนักสำรวจดาว">
+                                <div class="carousel-caption carousel-caption-custom">
+                                    <span class="badge bg-warning text-dark mb-1">ปก E-Book (Digital Edition)</span>
+                                    <h6 class="fw-bold mb-0">การผจญภัยของกระต่ายน้อยนักสำรวจดาว</h6>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=900&q=80" alt="พรีวิวบทที่ 1">
+                                <div class="carousel-caption carousel-caption-custom">
+                                    <span class="badge bg-info text-dark mb-1">พรีวิวบทที่ 1</span>
+                                    <h6 class="fw-bold mb-0">ความลับในห้องใต้หลังคาของคุณปู่</h6>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=900&q=80" alt="พรีวิวบทที่ 2">
+                                <div class="carousel-caption carousel-caption-custom">
+                                    <span class="badge bg-info text-dark mb-1">พรีวิวบทที่ 2</span>
+                                    <h6 class="fw-bold mb-0">จรวดแครอททะยานสู่ดวงจันทร์</h6>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1474932430478-367dbb6832c1?auto=format&fit=crop&w=900&q=80" alt="พรีวิวโหมด Interactive AR 3D">
+                                <div class="carousel-caption carousel-caption-custom">
+                                    <span class="badge bg-danger mb-1">ฟีเจอร์พิเศษในเล่ม</span>
+                                    <h6 class="fw-bold mb-0">โหมด 2 ภาษา (TH-EN) • เสียงพากย์ EN • Interactive AR 3D & เกมท้ายเรื่อง</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#bookPreviewCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#bookPreviewCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ฝั่งขวา: ข้อมูลนิทาน ปุ่มหัวใจรายการโปรด และจุดเด่นของนิทาน -->
+                <div class="col-12 col-lg-6">
+                    <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border">
+                        <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">🎨 หมวดอายุ 4 - 6 ขวบ</span>
+                                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">🇬🇧 เสียงพากย์อังกฤษ (EN) & 2 ภาษา</span>
+                            </div>
+                            <!-- ปุ่มกดหัวใจเก็บไว้เป็นรายการโปรด -->
+                            <button type="button" id="favoriteBtn" class="btn-favorite" onclick="toggleFavoriteBook()" title="เก็บไว้ในรายการโปรด">
+                                <i class="bi bi-heart" id="favoriteIcon"></i>
+                            </button>
+                        </div>
+
+                        <h2 class="fw-bold mb-2">การผจญภัยของกระต่ายน้อยนักสำรวจดาว</h2>
+                        <p class="text-muted mb-3">
+                            <i class="bi bi-feather me-1 text-danger"></i><strong>ผู้เขียน:</strong> ครูพี่แพรว นิทานดาวเหนือ &nbsp;|&nbsp; 
+                            <i class="bi bi-palette me-1 text-danger"></i><strong>ภาพประกอบ:</strong> พิชญาภา วงศ์สวัสดิ์
+                        </p>
+
+                        <!-- คะแนนรีวิว -->
+                        <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
+                            <div class="text-warning fs-5" id="topStarIcons">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="fw-bold fs-5" id="topAvgScore">4.9 / 5.0</span>
+                            <a href="#book-reviews" class="text-danger small fw-semibold text-decoration-underline">(<span id="topReviewCount">4</span> รีวิวจากผู้ปกครอง)</a>
+                            <span id="favStatusBadge" class="badge bg-danger bg-opacity-10 text-danger ms-auto d-none">
+                                <i class="bi bi-heart-fill me-1"></i>อยู่ในรายการโปรดแล้ว
+                            </span>
+                        </div>
+
+                        <!-- กล่องแสดงจุดเด่นของนิทาน E-Book -->
+                        <div class="p-3 rounded-4 bg-light border mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-bold text-danger small"><i class="bi bi-stars me-1"></i>ไฮไลต์และฟีเจอร์ภายในนิทาน E-Book:</span>
+                                <span class="badge bg-success">Digital E-Book</span>
+                            </div>
+                            <ul class="list-unstyled small mb-0 d-flex flex-column gap-1 text-secondary">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>เนื้อเรื่องสนุก ครบทั้ง <strong>5 บท</strong> เสริมทักษะ EF และจินตนาการ</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>ฝึกฟังสำเนียงจาก <strong>เสียงพากย์ภาษาอังกฤษ (English Narration)</strong></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>สลับอ่านได้ทั้ง <strong>โหมด 2 ภาษา ไทย-อังกฤษ (Bilingual Mode)</strong></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>สำรวจอวกาศผ่าน <strong>โหมด Interactive AR 3D</strong> และ <strong>มินิเกมตอนจบนิทาน</strong></li>
+                            </ul>
+                        </div>
+
+                        <!-- ปุ่มนำทาง -->
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <a href="#toc-section" class="btn btn-brand btn-lg w-100 rounded-pill py-3 fw-bold shadow-sm">
+                                    <i class="bi bi-journal-richtext me-2"></i>เลือกตอนอ่าน E-Book
+                                </a>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <button type="button" class="btn btn-dark btn-lg w-100 rounded-pill py-3 fw-bold shadow-sm" onclick="openAr3dModal(0)">
+                                    <i class="bi bi-badge-ar text-warning me-2"></i>โหมด Interactive AR 3D
+                                </button>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="btn btn-outline-danger w-100 rounded-pill py-2 fw-bold" onclick="openStoryGameModal()">
+                                    <i class="bi bi-controller me-2"></i>เล่นเกมภารกิจพิชิตดวงดาว (ตอนจบนิทาน)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 4. BOOK DETAILS, E-BOOK FORMAT SELECTOR & INTERACTIVE TABLE OF CONTENTS ================= -->
+    <section id="book-details" class="py-5 bg-white border-top border-bottom">
+        <div class="container py-3">
+            <div class="row g-4 align-items-stretch">
+                
+                <!-- คอลัมน์ซ้าย: เนื้อหาโดยสังเขป & ข้อมูลหนังสือ + รูปแบบการเข้าอ่าน E-Book -->
+                <div class="col-12 col-lg-6">
+                    <span class="text-danger fw-bold text-uppercase small">Story Synopsis & Details</span>
+                    <h3 class="fw-bold mt-1 mb-3">เนื้อหาโดยสังเขป (Synopsis)</h3>
+                    <p class="text-secondary lh-lg">
+                        <strong>“การผจญภัยของกระต่ายน้อยนักสำรวจดาว”</strong> เป็นเรื่องราวของ <em>“ลูมิน”</em> กระต่ายน้อยขี้สงสัยที่บังเอิญพบแผนที่ดวงดาวโบราณและกล้องโทรทรรศน์วิเศษในห้องใต้หลังคาของคุณปู่ เมื่อลูมินส่องดูดวงดาวด้วยความตั้งใจ จรวดแครอทจำลองก็พาเขาและเพื่อนรักอย่าง <em>“กัปตันหมีขาว”</em> ทะยานขึ้นสู่ห้วงอวกาศ!
+                    </p>
+                    <p class="text-secondary lh-lg mb-4">
+                        ตลอดการเดินทางทั้ง 5 ตอน เด็กๆ จะได้เรียนรู้ชื่อดาวเคราะห์ในระบบสุริยะ ฝึกทักษะ EF การแก้ไขปัญหาเฉพาะหน้าเมื่อต้องช่วยดาวหางน้อยที่หลงทาง พร้อมสลับอ่านโหมด 2 ภาษา (ไทย-อังกฤษ) ฝึกฟังเสียงพากย์ภาษาอังกฤษ (EN) ส่องโมเดล Interactive AR 3D และสนุกกับเกมทบทวนตอนจบนิทานได้ทันที
+                    </p>
+
+                    <div class="card border-0 bg-light rounded-4 p-4 mb-4">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-info-circle-fill text-danger me-2"></i>รายละเอียดหนังสือนิทาน E-Book</h5>
+                        <div class="row g-3 small">
+                            <div class="col-12 col-sm-6">
+                                <strong>ชื่อเรื่อง:</strong> การผจญภัยของกระต่ายน้อยนักสำรวจดาว
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <strong>หมวดหมู่นิทาน:</strong> อายุ 4 - 6 ขวบ
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <strong>ผู้เขียน:</strong> ครูพี่แพรว นิทานดาวเหนือ
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <strong>ผู้วาดภาพประกอบ:</strong> พิชญาภา วงศ์สวัสดิ์
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <strong>รูปแบบการอ่าน:</strong> E-Book เปิดอ่านเป็นตอน (ครบ 5 บท)
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <strong>ระบบเสียงพากย์:</strong> เสียงพากย์ภาษาอังกฤษ (EN)
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <strong>โหมดภาษา:</strong> 2 ภาษา ไทย - อังกฤษ (TH / EN)
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <strong>กิจกรรมเสริม:</strong> Interactive AR 3D & มินิเกมท้ายเรื่อง
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ส่วนเลือกรูปแบบการเข้าใช้งานโหมด E-Book -->
+                    <div class="p-4 rounded-4 border bg-white shadow-sm">
+                        <h6 class="fw-bold mb-3">
+                            <i class="bi bi-sliders2-vertical text-danger me-2"></i>เลือกรูปแบบการอ่านและกิจกรรมเสริมของนิทาน
+                        </h6>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-4">
+                                <div class="format-option active h-100" id="modeOption1" onclick="selectEbookMode(1)">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="badge bg-danger">โหมดที่ 1</span>
+                                        <i class="bi bi-translate text-danger fs-5"></i>
+                                    </div>
+                                    <div class="fw-bold small">E-Book 2 ภาษา + เสียง EN</div>
+                                    <div class="text-muted" style="font-size: 0.78rem;">อ่าน 5 ตอน ไทย-อังกฤษ พร้อมฟังเสียงพากย์อังกฤษ</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="format-option h-100" id="modeOption2" onclick="selectEbookMode(2)">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="badge bg-dark text-warning">โหมดที่ 2</span>
+                                        <i class="bi bi-badge-ar-fill text-warning fs-5"></i>
+                                    </div>
+                                    <div class="fw-bold small">Interactive AR 3D</div>
+                                    <div class="text-muted" style="font-size: 0.78rem;">สำรวจโมเดลอวกาศ 3 มิติ หมุนดูได้ 360 องศา</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="format-option h-100" id="modeOption3" onclick="selectEbookMode(3)">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="badge bg-success">โหมดที่ 3</span>
+                                        <i class="bi bi-controller text-success fs-5"></i>
+                                    </div>
+                                    <div class="fw-bold small">มินิเกมตอนจบนิทาน</div>
+                                    <div class="text-muted" style="font-size: 0.78rem;">เกมตอบคำถามและจับคู่คำศัพท์อวกาศท้ายเรื่อง</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- คอลัมน์ขวา: สารบัญ E-Book -->
+                <div class="col-12 col-lg-6" id="toc-section">
+                    <div class="card border rounded-4 p-4 h-100 shadow-sm">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                            <h4 class="fw-bold mb-0"><i class="bi bi-list-stars text-danger me-2"></i>สารบัญ E-Book (เลือกตอนเพื่อเปิดอ่าน)</h4>
+                            <span class="badge bg-success rounded-pill px-3 py-2">
+                                <i class="bi bi-book-half me-1"></i>อ่านได้ครบทั้ง 5 ตอน
+                            </span>
+                        </div>
+                        <p class="text-muted small mb-3">
+                            คลิกเลือกบทที่ต้องการเพื่อเปิดหน้าต่างอ่านนิทาน ภาพประกอบ โหมด 2 ภาษา (TH-EN) ฟังเสียงพากย์ภาษาอังกฤษ (EN) โหมด AR 3D และเล่นเกมตอนจบนิทานได้ทันที
+                        </p>
+
+                        <div class="d-flex flex-column gap-3">
+                            <!-- ตอนที่ 1 -->
+                            <div class="toc-item p-3 border d-flex justify-content-between align-items-center gap-2" onclick="openEbookChapter(0)">
+                                <div>
+                                    <span class="badge bg-danger me-2">บทที่ 1</span>
+                                    <span class="fw-bold text-dark">ความลับในห้องใต้หลังคาของคุณปู่</span>
+                                    <div class="text-muted small mt-1">
+                                        <i class="bi bi-volume-up text-danger me-1"></i>เสียงพากย์อังกฤษ (EN) • โหมด 2 ภาษา • AR 3D: Telescope
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-brand rounded-pill px-3 flex-shrink-0">
+                                    <i class="bi bi-book-half me-1"></i>อ่านตอนนี้
+                                </button>
+                            </div>
+
+                            <!-- ตอนที่ 2 -->
+                            <div class="toc-item p-3 border d-flex justify-content-between align-items-center gap-2" onclick="openEbookChapter(1)">
+                                <div>
+                                    <span class="badge bg-danger me-2">บทที่ 2</span>
+                                    <span class="fw-bold text-dark">จรวดแครอททะยานสู่ดวงจันทร์</span>
+                                    <div class="text-muted small mt-1">
+                                        <i class="bi bi-volume-up text-danger me-1"></i>เสียงพากย์อังกฤษ (EN) • โหมด 2 ภาษา • AR 3D: Carrot Rocket
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-brand rounded-pill px-3 flex-shrink-0">
+                                    <i class="bi bi-book-half me-1"></i>อ่านตอนนี้
+                                </button>
+                            </div>
+
+                            <!-- ตอนที่ 3 -->
+                            <div class="toc-item p-3 border d-flex justify-content-between align-items-center gap-2" onclick="openEbookChapter(2)">
+                                <div>
+                                    <span class="badge bg-danger me-2">บทที่ 3</span>
+                                    <span class="fw-bold text-dark">ภารกิจช่วยดาวหางน้อยหลงทาง</span>
+                                    <div class="text-muted small mt-1">
+                                        <i class="bi bi-volume-up text-danger me-1"></i>เสียงพากย์อังกฤษ (EN) • โหมด 2 ภาษา • AR 3D: Blue Comet
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-brand rounded-pill px-3 flex-shrink-0">
+                                    <i class="bi bi-book-half me-1"></i>อ่านตอนนี้
+                                </button>
+                            </div>
+
+                            <!-- ตอนที่ 4 -->
+                            <div class="toc-item p-3 border d-flex justify-content-between align-items-center gap-2" onclick="openEbookChapter(3)">
+                                <div>
+                                    <span class="badge bg-danger me-2">บทที่ 4</span>
+                                    <span class="fw-bold text-dark">วงแหวนมหัศจรรย์ของดาวเสาร์</span>
+                                    <div class="text-muted small mt-1">
+                                        <i class="bi bi-volume-up text-danger me-1"></i>เสียงพากย์อังกฤษ (EN) • โหมด 2 ภาษา • AR 3D: Planet Saturn
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-brand rounded-pill px-3 flex-shrink-0">
+                                    <i class="bi bi-book-half me-1"></i>อ่านตอนนี้
+                                </button>
+                            </div>
+
+                            <!-- ตอนที่ 5 -->
+                            <div class="toc-item p-3 border d-flex justify-content-between align-items-center gap-2" onclick="openEbookChapter(4)">
+                                <div>
+                                    <span class="badge bg-danger me-2">บทที่ 5</span>
+                                    <span class="fw-bold text-dark">กลับบ้านพร้อมแผนที่ดวงดาวดวงใหม่ (บทสรุป)</span>
+                                    <div class="text-muted small mt-1">
+                                        <i class="bi bi-controller text-success me-1"></i>เสียงพากย์อังกฤษ (EN) • AR 3D + <strong>เล่นเกมตอนจบนิทาน</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-brand rounded-pill px-3 flex-shrink-0">
+                                    <i class="bi bi-book-half me-1"></i>อ่านตอนนี้
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ปุ่มลัดเข้าโหมดพิเศษท้ายสารบัญ -->
+                        <div class="mt-auto pt-3 border-top d-flex flex-wrap justify-content-between align-items-center gap-2">
+                            <span class="small text-muted"><i class="bi bi-stars text-danger me-1"></i>สนุกกับกิจกรรมเสริมท้ายบทเรียนได้ทันที</span>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="openAr3dModal(0)">
+                                    <i class="bi bi-badge-ar me-1"></i>เปิด AR 3D
+                                </button>
+                                <button type="button" class="btn btn-sm btn-success rounded-pill px-3" onclick="openStoryGameModal()">
+                                    <i class="bi bi-controller me-1"></i>เล่นเกมท้ายเรื่อง
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 5. BOOK REVIEWS ================= -->
+    <section id="book-reviews" class="py-5" style="background-color: #fff6e5;">
+        <div class="container py-3">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+                <div>
+                    <span class="text-danger fw-bold text-uppercase small">Reader Reviews</span>
+                    <h3 class="fw-bold mb-0">รีวิวหนังสือนิทาน E-Book จากผู้อ่าน</h3>
+                </div>
+                <button class="btn btn-brand rounded-pill px-4 mt-3 mt-md-0 fw-semibold shadow-sm" data-bs-toggle="collapse" data-bs-target="#writeReviewCollapse">
+                    <i class="bi bi-pencil-square me-1"></i>เขียนรีวิวและให้คะแนนดาว
+                </button>
+            </div>
+
+            <!-- ฟอร์มเขียนรีวิว -->
+            <div class="collapse mb-4" id="writeReviewCollapse">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-star-fill text-warning me-2"></i>แบ่งปันความประทับใจของคุณ</h5>
+                    <form id="newReviewForm" onsubmit="addBookReview(event)">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-5">
+                                <label class="form-label small fw-bold">ชื่อผู้รีวิว</label>
+                                <input type="text" id="reviewerName" class="form-control" placeholder="เช่น คุณแม่เมย์ (น้องออโต้ 5 ขวบ)" required>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label small fw-bold">เลือกระดับดาว (สูงสุด 5 ดาว)</label>
+                                <select id="reviewerStars" class="form-select text-warning fw-bold">
+                                    <option value="5">⭐⭐⭐⭐⭐ (5 ดาว - ยอดเยี่ยมมาก)</option>
+                                    <option value="4">⭐⭐⭐⭐ (4 ดาว - ดีมาก)</option>
+                                    <option value="3">⭐⭐⭐ (3 ดาว - ปานกลาง)</option>
+                                    <option value="2">⭐⭐ (2 ดาว - พอใช้)</option>
+                                    <option value="1">⭐ (1 ดาว - ควรปรับปรุง)</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <label class="form-label small fw-bold">โหมดที่ชื่นชอบ</label>
+                                <select id="reviewerFormat" class="form-select">
+                                    <option value="โหมด E-Book 2 ภาษา + เสียง EN">โหมด E-Book 2 ภาษา + เสียง EN</option>
+                                    <option value="โหมด Interactive AR 3D">โหมด Interactive AR 3D</option>
+                                    <option value="มินิเกมตอนจบนิทาน">มินิเกมตอนจบนิทาน</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">ความคิดเห็นของคุณ</label>
+                                <textarea id="reviewerComment" class="form-control" rows="2" placeholder="เล่าความประทับใจเกี่ยวกับเนื้อเรื่อง เสียงพากย์ภาษาอังกฤษ โหมด 2 ภาษา หรือโหมด AR 3D..." required></textarea>
+                            </div>
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-brand rounded-pill px-4 fw-bold">ส่งรีวิวความคิดเห็น</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- แถบสรุปคะแนนดาวและตัวกรองระดับดาว -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <div class="row g-4 align-items-center">
+                    <!-- คะแนนเฉลี่ยรวม -->
+                    <div class="col-12 col-lg-3 text-center border-end-lg">
+                        <h1 class="display-4 fw-bold text-danger mb-0" id="summaryAvgRating">4.9</h1>
+                        <div class="text-warning fs-4 my-1" id="summaryStarIcons">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-muted small mb-2">จากทั้งหมด <span id="summaryTotalReviews" class="fw-bold">4</span> ความคิดเห็น</p>
+                        <div class="d-flex flex-column gap-2 px-3">
+                            <select class="form-select form-select-sm text-center fw-semibold border-danger" id="starSelectFilter" onchange="filterReviewsByStar(Number(this.value))">
+                                <option value="0">🔍 ดูทุกระดับดาว (1 - 5 ดาว)</option>
+                                <option value="5">⭐⭐⭐⭐⭐ เฉพาะ 5 ดาว</option>
+                                <option value="4">⭐⭐⭐⭐ เฉพาะ 4 ดาว</option>
+                                <option value="3">⭐⭐⭐ เฉพาะ 3 ดาว</option>
+                                <option value="2">⭐⭐ เฉพาะ 2 ดาว</option>
+                                <option value="1">⭐ เฉพาะ 1 ดาว</option>
+                            </select>
+                            <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="filterReviewsByStar(0)">
+                                แสดงทุกระดับดาว
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- แถบดาว 5 ถึง 1 ดาว พร้อมแสดงตัวอย่างความคิดเห็น -->
+                    <div class="col-12 col-lg-9">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+                            <span class="small fw-bold text-secondary">คลิกที่แถบระดับดาวเพื่อเลือกดูความคิดเห็น:</span>
+                            <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2" id="activeStarFilterText">กำลังแสดง: ทุกระดับดาว</span>
+                        </div>
+                        <div id="starBreakdownContainer" class="d-flex flex-column gap-2">
+                            <!-- สร้างแถบดาวพร้อมความคิดเห็นข้างๆ อัตโนมัติด้วย JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนควบคุมการเลื่อนแถวรีวิว -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="fw-bold mb-0"><i class="bi bi-chat-heart-fill text-danger me-2"></i>ความคิดเห็นจากผู้อ่าน</h6>
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-dark rounded-start-pill px-3" onclick="scrollReviewRow(-360)">
+                        <i class="bi bi-chevron-left"></i> เลื่อนซ้าย
+                    </button>
+                    <button class="btn btn-outline-dark rounded-end-pill px-3" onclick="scrollReviewRow(360)">
+                        เลื่อนขวา <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- แถบการ์ดรีวิวเรียงเป็นแถวและเลื่อนอ่านได้ -->
+            <div class="review-scroll-wrapper" id="reviewListContainer">
+                <!-- การ์ดรีวิวถูกเติมด้วย JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 6. NEXT BOOK RECOMMENDATIONS ================= -->
+    <section id="next-books" class="py-5 bg-white">
+        <div class="container py-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
+                <div>
+                    <span class="text-danger fw-bold text-uppercase small">Up Next in TaleWonder</span>
+                    <h3 class="fw-bold mb-0">แนะนำหนังสือนิทานน่าอ่านเรื่องถัดไป</h3>
+                </div>
+                <a href="Shoptale.html" class="btn btn-outline-danger rounded-pill btn-sm px-3 nav-smart-link" data-page="Shoptale.html">
+                    ดูนิทานทั้งหมดในร้านค้า <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="row g-4" id="recommendedBooksContainer">
+                <!-- สร้างรายการหนังสือแนะนำด้วย JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 7. MODAL: หน้าต่างอ่านนิทาน E-BOOK ================= -->
+    <div class="modal fade" id="ebookReaderModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white border-0 rounded-top-4">
+                    <div>
+                        <h5 class="modal-title fw-bold mb-0">
+                            <i class="bi bi-book-half text-warning me-2"></i>E-Book Reader: การผจญภัยของกระต่ายน้อยนักสำรวจดาว
+                        </h5>
+                        <small class="text-warning">
+                            โหมด 2 ภาษา (TH-EN) • เสียงพากย์ภาษาอังกฤษ (EN) • Interactive AR 3D & มินิเกมท้ายเรื่อง
+                        </small>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="stopSpeech()"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- แถบเลือกตอนด่วน (บทที่ 1 - 5) และปุ่มควบคุมโหมด 2 ภาษา / เสียงพากย์ภาษาอังกฤษ EN -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-3 border-bottom">
+                        <div class="d-flex flex-wrap gap-1" id="ebookChapterPills">
+                            <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="selectChapterInModal(0)">บทที่ 1</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="selectChapterInModal(1)">บทที่ 2</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="selectChapterInModal(2)">บทที่ 3</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="selectChapterInModal(3)">บทที่ 4</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="selectChapterInModal(4)">บทที่ 5 (ตอนจบ)</button>
+                        </div>
+
+                        <div class="d-flex flex-wrap align-items-center gap-2">
+                            <!-- โหมด 2 ภาษา ไทย - อังกฤษ -->
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Language Mode">
+                                <button type="button" class="btn btn-outline-danger active fw-semibold" id="langBothBtn" onclick="setEbookLang('both')">🇹🇭+🇬🇧 2 ภาษา</button>
+                                <button type="button" class="btn btn-outline-danger fw-semibold" id="langThBtn" onclick="setEbookLang('th')">🇹🇭 ไทย</button>
+                                <button type="button" class="btn btn-outline-danger fw-semibold" id="langEnBtn" onclick="setEbookLang('en')">🇬🇧 EN</button>
+                            </div>
+                            <!-- ฟีเจอร์เสียงพากย์ภาษาอังกฤษ -->
+                            <button type="button" class="btn btn-sm btn-warning fw-bold rounded-pill px-3" id="speakBtn" onclick="speakCurrentChapter()">
+                                <i class="bi bi-volume-up-fill me-1"></i>ฟังเสียงพากย์อังกฤษ (EN Audio)
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="stopSpeech()">
+                                <i class="bi bi-stop-circle me-1"></i>หยุดเสียง
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- แถบสถานะกำลังพากย์เสียงภาษาอังกฤษ -->
+                    <div id="speechStatusAlert" class="alert alert-warning py-2 px-3 rounded-3 small d-none mb-3">
+                        <i class="bi bi-soundwave me-2"></i><span id="speechStatusText">กำลังเล่นเสียงพากย์ภาษาอังกฤษ (English Voice Narration)...</span>
+                    </div>
+
+                    <!-- พื้นที่แสดงหน้านิทานและภาพประกอบ -->
+                    <div class="ebook-page p-4 p-md-5 d-flex align-items-center">
+                        <div class="row align-items-center gy-4 w-100">
+                            <div class="col-12 col-lg-5 text-center">
+                                <img id="ebookImage" src="" class="img-fluid rounded-4 shadow" style="max-height: 320px; width: 100%; object-fit: cover;" alt="ภาพประกอบนิทาน">
+                                <div class="mt-3 d-flex flex-wrap justify-content-center gap-2">
+                                    <button type="button" class="btn btn-sm btn-dark text-warning rounded-pill px-3 fw-semibold" onclick="openAr3dFromReader()">
+                                        <i class="bi bi-badge-ar me-1"></i>ส่องโมเดล Interactive AR 3D ประจำบทนี้
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-7">
+                                <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                    <span class="badge bg-danger px-3 py-2" id="ebookChapterBadge">บทที่ 1 / 5</span>
+                                    <span class="badge bg-warning text-dark px-3 py-2">หมวดอายุ 4 - 6 ขวบ</span>
+                                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">🇬🇧 English Audio</span>
+                                </div>
+                                <h3 class="fw-bold mb-2" id="ebookChapterTitle"></h3>
+                                <h6 class="text-danger fw-semibold mb-3" id="ebookChapterSubTitle"></h6>
+
+                                <!-- เนื้อเรื่องภาษาไทยและภาษาอังกฤษ -->
+                                <div id="ebookStoryTextContainer" class="mb-4"></div>
+
+                                <!-- กล่องคำศัพท์ภาษาอังกฤษและทักษะ EF -->
+                                <div class="p-3 rounded-4 bg-white border border-warning shadow-sm">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-1">
+                                        <span class="fw-bold small text-danger">
+                                            <i class="bi bi-stars me-1"></i>คำศัพท์ภาษาอังกฤษประจำบท (คลิกเพื่อฟังเสียง EN):
+                                        </span>
+                                        <span class="badge bg-warning text-dark">English Vocabulary</span>
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-2 mb-2" id="ebookVocabContainer"></div>
+                                    <div class="small text-secondary border-top pt-2 mt-2" id="ebookMoralText"></div>
+                                </div>
+
+                                <!-- แถบเล่นเกมตอนจบนิทาน -->
+                                <div id="endOfStoryGameBanner" class="mt-3 p-3 rounded-4 bg-success bg-opacity-10 border border-success d-flex flex-wrap justify-content-between align-items-center gap-2 d-none">
+                                    <div>
+                                        <span class="badge bg-success mb-1">🎉 ยินดีด้วย! คุณอ่านถึงตอนจบนิทานแล้ว</span>
+                                        <div class="fw-bold text-dark small">สนุกกับมินิเกมท้ายเรื่อง: ภารกิจพิชิตดวงดาวกับลูมิน</div>
+                                    </div>
+                                    <button type="button" class="btn btn-success btn-sm rounded-pill px-3 fw-bold" onclick="openGameFromReader()">
+                                        <i class="bi bi-controller me-1"></i>เริ่มเล่นเกมตอนจบนิทาน
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ปุ่มพลิกหน้าหนังสือ และปุ่มลัดโหมด AR 3D / เกมตอนจบนิทาน -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-4">
+                        <button class="btn btn-outline-dark rounded-pill px-4" id="prevPageBtn" onclick="changeEbookPage(-1)">
+                            <i class="bi bi-arrow-left me-1"></i> บทก่อนหน้า
+                        </button>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" class="btn btn-outline-danger rounded-pill px-3" onclick="openAr3dFromReader()">
+                                <i class="bi bi-badge-ar me-1"></i>Interactive AR 3D
+                            </button>
+                            <button type="button" class="btn btn-success rounded-pill px-3" onclick="openGameFromReader()">
+                                <i class="bi bi-controller me-1"></i>เล่นเกมตอนจบนิทาน
+                            </button>
+                        </div>
+                        <button class="btn btn-dark rounded-pill px-4" id="nextPageBtn" onclick="changeEbookPage(1)">
+                            บทถัดไป <i class="bi bi-arrow-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 8. MODAL: โหมด INTERACTIVE AR 3D ================= -->
+    <div class="modal fade" id="ar3dModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white border-0 rounded-top-4">
+                    <div>
+                        <h5 class="modal-title fw-bold mb-0">
+                            <i class="bi bi-badge-ar-fill text-warning me-2"></i>โหมด Interactive AR 3D: สำรวจวัตถุอวกาศทะลุจอ
+                        </h5>
+                        <small class="text-warning">หมุนสำรวจโมเดลอวกาศ 3 มิติได้ 360 องศา พร้อมฟังเสียงบรรยายภาษาอังกฤษ</small>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="stopSpeech()"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- ปุ่มเลือกโมเดล AR ประจำบทที่ 1-5 -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                        <div class="btn-group btn-group-sm flex-wrap" id="arModelPills">
+                            <button type="button" class="btn btn-danger" onclick="loadArModel(0)">1. Telescope</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="loadArModel(1)">2. Carrot Rocket</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="loadArModel(2)">3. Blue Comet</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="loadArModel(3)">4. Planet Saturn</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="loadArModel(4)">5. Star Map</button>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="toggleArCameraBg()">
+                            <i class="bi bi-camera-video me-1"></i>สลับฉากจำลองห้องนอน (AR Room View)
+                        </button>
+                    </div>
+
+                    <!-- เวทีแสดงผล 3D Interactive -->
+                    <div class="ar-stage d-flex flex-column justify-content-between p-4 text-white mb-3" id="arStageBox">
+                        <div class="d-flex justify-content-between align-items-start z-1">
+                            <span class="badge bg-warning text-dark px-3 py-2" id="arModelBadge">AR Model #1</span>
+                            <button type="button" class="btn btn-sm btn-warning rounded-pill fw-bold px-3" onclick="speakArModelEn()">
+                                <i class="bi bi-volume-up-fill me-1"></i>Listen in English (EN)
+                            </button>
+                        </div>
+
+                        <div class="my-auto text-center py-3 z-1">
+                            <div class="ar-3d-object" id="ar3dObjectVisual">🔭</div>
+                            <h4 class="fw-bold mt-3 mb-1 text-warning" id="arModelTitle">Golden Telescope (กล้องโทรทรรศน์วิเศษ)</h4>
+                            <p class="small text-light mb-0 px-md-5" id="arModelDesc"></p>
+                        </div>
+
+                        <div class="ar-grid-floor"></div>
+                    </div>
+
+                    <!-- ปุ่มควบคุมการหมุน 360 องศา และซูม -->
+                    <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="transformArObject(-35, 0, 0)">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i>หมุนซ้าย
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="transformArObject(35, 0, 0)">
+                            <i class="bi bi-arrow-clockwise me-1"></i>หมุนขวา
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="transformArObject(0, 20, 0)">
+                            <i class="bi bi-arrows-vertical me-1"></i>เอียงดูมุมบน/ล่าง
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="transformArObject(0, 0, 0.15)">
+                            <i class="bi bi-zoom-in me-1"></i>ขยาย (Zoom In)
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="resetArObject()">
+                            <i class="bi bi-arrow-repeat me-1"></i>รีเซ็ตมุมมอง
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 9. MODAL: เกมตอนจบนิทาน (END-OF-STORY INTERACTIVE GAME) ================= -->
+    <div class="modal fade" id="storyGameModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header bg-success text-white border-0 rounded-top-4">
+                    <div>
+                        <h5 class="modal-title fw-bold mb-0">
+                            <i class="bi bi-controller me-2"></i>เกมตอนจบนิทาน: ภารกิจสำรวจดวงดาวกับกระต่ายน้อยลูมิน
+                        </h5>
+                        <small class="text-white-50">ทบทวนเนื้อเรื่อง ทักษะ EF และคำศัพท์ภาษาอังกฤษแสนสนุก</small>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="stopSpeech()"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                        <span class="badge bg-success px-3 py-2" id="gameStepBadge">ด่านที่ 1 / 3</span>
+                        <span class="fw-bold text-success"><i class="bi bi-star-fill text-warning me-1"></i>คะแนนสะสม: <span id="gameScoreText">0</span> / 3 ดาว</span>
+                    </div>
+
+                    <div id="gameQuestionBox" class="p-3 rounded-4 bg-light border mb-3">
+                        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                            <h5 class="fw-bold mb-0" id="gameQuestionTitle"></h5>
+                            <button type="button" class="btn btn-sm btn-warning rounded-pill px-3 flex-shrink-0" onclick="speakGameQuestionEn()">
+                                <i class="bi bi-volume-up-fill me-1"></i>ฟังคำศัพท์ EN
+                            </button>
+                        </div>
+                        <p class="text-secondary small mb-3" id="gameQuestionSub"></p>
+                        <div class="d-grid gap-2" id="gameChoicesContainer"></div>
+                    </div>
+
+                    <div id="gameFeedbackBox" class="alert d-none rounded-3 small mb-3"></div>
+
+                    <!-- หน้าสรุปผลเมื่อเล่นจบเกม -->
+                    <div id="gameSummaryBox" class="text-center py-4 d-none">
+                        <div class="display-3 mb-2">🏆🐰🌟</div>
+                        <h4 class="fw-bold text-success">ภารกิจสำเร็จ! นักสำรวจดาวตัวน้อยเก่งมาก!</h4>
+                        <p class="text-secondary mb-3" id="gameFinalSummaryText"></p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button type="button" class="btn btn-brand rounded-pill px-4 fw-bold" onclick="startStoryGame()">
+                                <i class="bi bi-arrow-repeat me-1"></i>เล่นอีกครั้ง
+                            </button>
+                            <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">
+                                ปิดหน้าต่างเกม
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 10. SOCIAL LINK FOOTER ================= -->
+    <footer id="social" class="bg-dark text-white py-5 mt-4">
+        <div class="container text-center">
+            <h4 class="fw-bold mb-2">ติดตามเราบนโซเชียลมีเดีย!</h4>
+            <p class="text-secondary mb-4">
+                ไม่พลาดทุกการอัปเดตหนังสือนิทาน E-Book เรื่องใหม่ กิจกรรมส่งเสริมการอ่าน และสาระน่ารู้จาก TaleWonder
+            </p>
+            <div class="d-flex justify-content-center gap-3 mb-4">
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            </div>
+            <hr class="border-secondary my-4">
+            <p class="small text-secondary mb-0">
+                   &copy; 2026 TaleWonder Studio Co., Ltd. All Rights Reserved. | TaleWonder Group • CAI 
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ================= 11. APPLICATION SCRIPT ================= -->
+    <script>
+        const BOOK_ID = 'tale_rabbit_star';
+
+        // 1. จัดการลิงก์เมนูให้ใช้งานได้ถูกต้องทั้งในโฟลเดอร์หลักและโฟลเดอร์ย่อย
+        function resolvePagePath(targetPage) {
+            if (!targetPage || targetPage.startsWith('#') || targetPage.startsWith('http')) return targetPage;
+            const path = window.location.pathname.replace(/\\/g, '/');
+            const isInSubfolder = path.toLowerCase().includes('/pretalestory/');
+            if (isInSubfolder) {
+                if (targetPage.toLowerCase().startsWith('pretalestory/')) {
+                    return targetPage.substring('PretaleStory/'.length);
+                }
+                return '../' + targetPage;
+            } else {
+                return targetPage;
+            }
+        }
+
+        function applySmartNavigationLinks() {
+            document.querySelectorAll('.nav-smart-link').forEach(link => {
+                const target = link.getAttribute('data-page');
+                if (target) {
+                    link.setAttribute('href', resolvePagePath(target));
+                }
+            });
+        }
+
+        // 2. ข้อมูลเนื้อหานิทาน E-Book ทั้ง 5 บท
+        const ebookChapters = [
+            {
+                badge: 'บทที่ 1 / 5',
+                titleTh: 'บทที่ 1: ความลับในห้องใต้หลังคาของคุณปู่',
+                titleEn: 'Chapter 1: The Secret in Grandpa’s Attic',
+                img: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=900&q=80',
+                textTh: 'ในคืนที่พระจันทร์เต็มดวง “ลูมิน” กระต่ายน้อยหูยาวแอบย่องขึ้นไปบนห้องใต้หลังคาของคุณปู่ เขาพบแผนที่ดวงดาวโบราณและกล้องโทรทรรศน์สีทองส่องประกายวิบวับ เมื่อลูมินลองแนบตาส่องดู ดวงดาวบนท้องฟ้าก็ขยับยิ้มและส่งเสียงเรียกชื่อเขาอย่างน่าอัศจรรย์!',
+                textEn: 'On a full moon night, Lumin the little long-eared rabbit tiptoed up to Grandpa’s attic. He discovered an ancient star map and a sparkling golden telescope. When Lumin looked through the lens, the stars in the sky smiled and called his name!',
+                vocab: [
+                    { word: 'Telescope', meaning: 'กล้องโทรทรรศน์' },
+                    { word: 'Star Map', meaning: 'แผนที่ดวงดาว' },
+                    { word: 'Full Moon', meaning: 'พระจันทร์เต็มดวง' }
+                ],
+                moral: '💡 ทักษะ EF ประจำบท: การช่างสังเกตและความใฝ่รู้เป็นจุดเริ่มต้นของการเรียนรู้สิ่งใหม่',
+                arEmoji: '🔭',
+                arName: 'Golden Telescope (กล้องโทรทรรศน์วิเศษ)',
+                arDescEn: 'A magical golden telescope that lets Lumin see smiling stars across the galaxy.'
+            },
+            {
+                badge: 'บทที่ 2 / 5',
+                titleTh: 'บทที่ 2: จรวดแครอททะยานสู่ดวงจันทร์',
+                titleEn: 'Chapter 2: The Carrot Rocket Launches to the Moon',
+                img: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=900&q=80',
+                textTh: 'ทันใดนั้น จรวดแครอทจำลองข้างหน้าต่างก็ขยายใหญ่ขึ้น! ลูมินชวน “กัปตันหมีขาว” เพื่อนรักสวมหมวกนักบินอวกาศ แล้วนับถอยหลัง สาม สอง หนึ่ง... ฟู่! จรวดแครอทพาเพื่อนรักทั้งสองพุ่งทะยานผ่านก้อนเมฆสีสายไหมมุ่งหน้าสู่ดวงจันทร์สีเงิน',
+                textEn: 'Suddenly, the toy carrot rocket by the window grew life-sized! Lumin invited his best friend, Captain Polar Bear, to put on space helmets. Counting down three, two, one... Whoosh! The carrot rocket soared past cotton-candy clouds toward the silver moon.',
+                vocab: [
+                    { word: 'Rocket', meaning: 'จรวด' },
+                    { word: 'Astronaut', meaning: 'นักบินอวกาศ' },
+                    { word: 'Countdown', meaning: 'การนับถอยหลัง' }
+                ],
+                moral: '💡 ทักษะ EF ประจำบท: การวางแผนเตรียมความพร้อมและการทำงานร่วมกันกับเพื่อน',
+                arEmoji: '🚀',
+                arName: 'Carrot Space Rocket (จรวดแครอทอวกาศ)',
+                arDescEn: 'Lumin and Captain Polar Bear fly this fast orange carrot rocket to the moon!'
+            },
+            {
+                badge: 'บทที่ 3 / 5',
+                titleTh: 'บทที่ 3: ภารกิจช่วยดาวหางน้อยหลงทาง',
+                titleEn: 'Chapter 3: Rescuing the Lost Little Comet',
+                img: 'https://images.unsplash.com/photo-1474932430478-367dbb6832c1?auto=format&fit=crop&w=900&q=80',
+                textTh: 'ระหว่างทางผ่านแถบดาวเคราะห์น้อย ลูมินได้ยินเสียงสะอื้นเบาๆ ของ “ดาวหางน้อยหางสีฟ้า” ที่หลงทางกับครอบครัว ลูมินจึงเปิดแผนที่ดวงดาวของคุณปู่ ใช้ไฟฉายส่องนำทางพาเจ้าดาวหางน้อยบินหลบอุกกาบาตจนกลับไปพบคุณแม่ดาวหางได้อย่างปลอดภัย',
+                textEn: 'While passing the asteroid belt, Lumin heard a soft sob from a Little Blue Comet who had lost its family. Lumin opened Grandpa’s star map and used his flashlight to guide the little comet safely past the meteors back to its mother.',
+                vocab: [
+                    { word: 'Comet', meaning: 'ดาวหาง' },
+                    { word: 'Asteroid', meaning: 'ดาวเคราะห์น้อย' },
+                    { word: 'Kindness', meaning: 'ความมีน้ำใจช่วยเหลือ' }
+                ],
+                moral: '💡 ทักษะ EF ประจำบท: การควบคุมอารมณ์และการแก้ไขปัญหาเฉพาะหน้าเพื่อช่วยเหลือผู้อื่น',
+                arEmoji: '☄️',
+                arName: 'Little Blue Comet (ดาวหางน้อยหางสีฟ้า)',
+                arDescEn: 'A glowing blue ice comet that Lumin guided safely through the asteroid belt.'
+            },
+            {
+                badge: 'บทที่ 4 / 5',
+                titleTh: 'บทที่ 4: วงแหวนมหัศจรรย์ของดาวเสาร์',
+                titleEn: 'Chapter 4: The Magical Rings of Saturn',
+                img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80',
+                textTh: 'คุณแม่ดาวหางมอบผงละอองดาวแทนคำขอบคุณ ทำให้จรวดแครอทบินไปถึงดาวเสาร์ที่มีวงแหวนน้ำแข็งส่องแสงสีรุ้ง ลูมินและกัปตันหมีขาวได้เรียนรู้ว่าวงแหวนของดาวเสาร์ประกอบด้วยก้อนน้ำแข็งและหินนับล้านก้อนที่หมุนรอบตัวเองอย่างเป็นระเบียบ',
+                textEn: 'Mother Comet gifted them stardust in gratitude, propelling the carrot rocket to Saturn and its rainbow-glowing ice rings. Lumin and Captain Bear learned that Saturn’s rings are made of millions of ice and rock pieces orbiting in harmony.',
+                vocab: [
+                    { word: 'Saturn', meaning: 'ดาวเสาร์' },
+                    { word: 'Ring', meaning: 'วงแหวน' },
+                    { word: 'Solar System', meaning: 'ระบบสุริยะ' }
+                ],
+                moral: '💡 ทักษะ EF ประจำบท: ความรู้วิทยาศาสตร์เบื้องต้นเกี่ยวกับระบบสุริยะและการสังเกตธรรมชาติ',
+                arEmoji: '🪐',
+                arName: 'Planet Saturn & Rings (ดาวเสาร์และวงแหวนน้ำแข็ง)',
+                arDescEn: 'The sixth planet from the Sun, famous for its dazzling rings of ice and stardust.'
+            },
+            {
+                badge: 'บทที่ 5 / 5',
+                titleTh: 'บทที่ 5: กลับบ้านพร้อมแผนที่ดวงดาวดวงใหม่',
+                titleEn: 'Chapter 5: Returning Home with a New Star Map',
+                img: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80',
+                textTh: 'เมื่อใกล้รุ่งเช้า จรวดแครอทพาลูมินและกัปตันหมีขาวกลับมาลงจอดที่ห้องใต้หลังคาอย่างนุ่มนวล บนแผนที่ของคุณปู่ปรากฏดาวดวงใหม่ชื่อว่า “ดาวมิตรภาพของลูมิน” ลูมินหลับตาลงด้วยรอยยิ้ม พร้อมหัวใจที่กล้าหาญและอบอุ่นกว่าเดิม',
+                textEn: 'Near dawn, the carrot rocket gently landed back in the attic. On Grandpa’s map, a new star appeared named "Lumin’s Friendship Star." Lumin closed his eyes with a smile, his heart braver and warmer than ever before.',
+                vocab: [
+                    { word: 'Friendship', meaning: 'มิตรภาพ' },
+                    { word: 'Courage', meaning: 'ความกล้าหาญ' },
+                    { word: 'Adventure', meaning: 'การผจญภัย' }
+                ],
+                moral: '💡 บทสรุปนิทาน: มิตรภาพและความกล้าหาญคือดวงดาวนำทางที่ดีที่สุดในใจของเด็กทุกคน',
+                arEmoji: '🌟',
+                arName: 'Lumin’s Friendship Star (ดาวมิตรภาพของลูมิน)',
+                arDescEn: 'A shining new star on Grandpa’s map celebrating courage and true friendship.'
+            }
+        ];
+
+        let currentChapterIndex = 0;
+        let currentEbookLang = 'both';
+        let activeStarFilter = 0;
+
+        // 3. นับจำนวนการเปิดอ่าน
+        function loadReadCount() {
+            const readCount = parseInt(localStorage.getItem('tw_read_count_' + BOOK_ID) || '3', 10);
+            const countEl = document.getElementById('headerReadCount');
+            if (countEl) countEl.textContent = readCount;
+        }
+
+        function incrementReadCount() {
+            let count = parseInt(localStorage.getItem('tw_read_count_' + BOOK_ID) || '3', 10) + 1;
+            localStorage.setItem('tw_read_count_' + BOOK_ID, count);
+            loadReadCount();
+        }
+
+        // 4. ปุ่มหัวใจรายการโปรด
+        function getFavorites() {
+            try {
+                return JSON.parse(localStorage.getItem('tw_favorites') || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function renderFavoriteState() {
+            const favs = getFavorites();
+            const isFav = favs.includes(BOOK_ID);
+            const btn = document.getElementById('favoriteBtn');
+            const icon = document.getElementById('favoriteIcon');
+            const badge = document.getElementById('favStatusBadge');
+            if (isFav) {
+                btn.classList.add('active');
+                icon.className = 'bi bi-heart-fill';
+                badge.classList.remove('d-none');
+            } else {
+                btn.classList.remove('active');
+                icon.className = 'bi bi-heart';
+                badge.classList.add('d-none');
+            }
+        }
+
+        function toggleFavoriteBook() {
+            let favs = getFavorites();
+            if (favs.includes(BOOK_ID)) {
+                favs = favs.filter(id => id !== BOOK_ID);
+            } else {
+                favs.push(BOOK_ID);
+            }
+            localStorage.setItem('tw_favorites', JSON.stringify(favs));
+            renderFavoriteState();
+        }
+
+        // 5. เลือกรูปแบบโหมด E-Book
+        function selectEbookMode(modeNumber) {
+            [1, 2, 3].forEach(num => {
+                const el = document.getElementById('modeOption' + num);
+                if (el) el.classList.toggle('active', num === modeNumber);
+            });
+            if (modeNumber === 1) {
+                openEbookChapter(0);
+            } else if (modeNumber === 2) {
+                openAr3dModal(currentChapterIndex);
+            } else if (modeNumber === 3) {
+                openStoryGameModal();
+            }
+        }
+
+        // 6. การทำงานของ E-Book Reader + โหมด 2 ภาษา + เสียงพากย์อังกฤษ
+        function openEbookChapter(index) {
+            currentChapterIndex = index;
+            incrementReadCount();
+            renderEbookPage();
+            const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('ebookReaderModal'));
+            modal.show();
+        }
+
+        function selectChapterInModal(index) {
+            stopSpeech();
+            currentChapterIndex = index;
+            renderEbookPage();
+        }
+
+        function renderEbookPage() {
+            const ch = ebookChapters[currentChapterIndex];
+            document.getElementById('ebookImage').src = ch.img;
+            document.getElementById('ebookChapterBadge').textContent = ch.badge;
+            document.getElementById('ebookChapterTitle').textContent = ch.titleTh;
+            document.getElementById('ebookChapterSubTitle').textContent = ch.titleEn;
+
+            const textContainer = document.getElementById('ebookStoryTextContainer');
+            if (currentEbookLang === 'both') {
+                textContainer.innerHTML = `
+                    <div class="p-3 rounded-3 bg-white border mb-2">
+                        <span class="badge bg-danger mb-1">🇹🇭 ภาษาไทย</span>
+                        <p class="fs-6 lh-lg text-dark mb-0">${ch.textTh}</p>
+                    </div>
+                    <div class="p-3 rounded-3 bg-white border">
+                        <span class="badge bg-primary mb-1">🇬🇧 English</span>
+                        <p class="fs-6 lh-lg text-dark mb-0">${ch.textEn}</p>
+                    </div>
+                `;
+            } else if (currentEbookLang === 'th') {
+                textContainer.innerHTML = `<p class="fs-5 lh-lg text-dark mb-0">${ch.textTh}</p>`;
+            } else {
+                textContainer.innerHTML = `<p class="fs-5 lh-lg text-dark mb-0">${ch.textEn}</p>`;
+            }
+
+            document.getElementById('ebookMoralText').textContent = ch.moral;
+
+            const gameBanner = document.getElementById('endOfStoryGameBanner');
+            if (currentChapterIndex === ebookChapters.length - 1) {
+                gameBanner.classList.remove('d-none');
+            } else {
+                gameBanner.classList.add('d-none');
+            }
+
+            const pills = document.querySelectorAll('#ebookChapterPills button');
+            pills.forEach((btn, idx) => {
+                btn.className = idx === currentChapterIndex
+                    ? 'btn btn-sm btn-danger rounded-pill px-3 fw-bold'
+                    : 'btn btn-sm btn-outline-danger rounded-pill px-3';
+            });
+
+            const vocabBox = document.getElementById('ebookVocabContainer');
+            vocabBox.innerHTML = ch.vocab.map(v => `
+                <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="speakWordEn('${v.word}')">
+                    <i class="bi bi-volume-up-fill text-danger me-1"></i><strong>${v.word}</strong> (${v.meaning})
+                </button>
+            `).join('');
+
+            document.getElementById('prevPageBtn').disabled = (currentChapterIndex === 0);
+            document.getElementById('nextPageBtn').disabled = (currentChapterIndex === ebookChapters.length - 1);
+        }
+
+        function changeEbookPage(direction) {
+            stopSpeech();
+            const nextIdx = currentChapterIndex + direction;
+            if (nextIdx >= 0 && nextIdx < ebookChapters.length) {
+                currentChapterIndex = nextIdx;
+                renderEbookPage();
+            }
+        }
+
+        function setEbookLang(lang) {
+            stopSpeech();
+            currentEbookLang = lang;
+            document.getElementById('langBothBtn').classList.toggle('active', lang === 'both');
+            document.getElementById('langThBtn').classList.toggle('active', lang === 'th');
+            document.getElementById('langEnBtn').classList.toggle('active', lang === 'en');
+            renderEbookPage();
+        }
+
+        function speakEnglishText(textToRead, statusLabel) {
+            stopSpeech();
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(textToRead);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.92;
+
+                const voices = window.speechSynthesis.getVoices();
+                const enVoice = voices.find(v => v.lang.toLowerCase().startsWith('en'));
+                if (enVoice) utterance.voice = enVoice;
+
+                const alertBox = document.getElementById('speechStatusAlert');
+                const alertText = document.getElementById('speechStatusText');
+                if (alertBox && alertText) {
+                    alertBox.classList.remove('d-none');
+                    alertText.textContent = statusLabel || `Playing English Voice Narration: ${textToRead.substring(0, 60)}...`;
+                }
+
+                utterance.onend = () => {
+                    if (alertBox) alertBox.classList.add('d-none');
+                };
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function speakCurrentChapter() {
+            const ch = ebookChapters[currentChapterIndex];
+            speakEnglishText(`${ch.titleEn}. ${ch.textEn}`, `🇬🇧 กำลังพากย์เสียงภาษาอังกฤษ (EN): ${ch.titleEn}`);
+        }
+
+        function speakWordEn(enWord) {
+            speakEnglishText(enWord, `🇬🇧 กำลังออกเสียงคำศัพท์ภาษาอังกฤษ: "${enWord}"`);
+        }
+
+        function stopSpeech() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            const alertBox = document.getElementById('speechStatusAlert');
+            if (alertBox) alertBox.classList.add('d-none');
+        }
+
+        // 7. โหมด Interactive AR 3D
+        let arRotY = 0;
+        let arRotX = 0;
+        let arScale = 1;
+        let currentArIndex = 0;
+
+        function openAr3dModal(chapterIdx) {
+            loadArModel(chapterIdx || 0);
+            const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('ar3dModal'));
+            modal.show();
+        }
+
+        function openAr3dFromReader() {
+            const readerEl = document.getElementById('ebookReaderModal');
+            const readerModal = bootstrap.Modal.getInstance(readerEl);
+            if (readerModal) readerModal.hide();
+            openAr3dModal(currentChapterIndex);
+        }
+
+        function loadArModel(idx) {
+            currentArIndex = idx;
+            const ch = ebookChapters[idx];
+            resetArObject();
+            document.getElementById('arModelBadge').textContent = `Interactive AR 3D • ${ch.badge}`;
+            document.getElementById('ar3dObjectVisual').textContent = ch.arEmoji;
+            document.getElementById('arModelTitle').textContent = ch.arName;
+            document.getElementById('arModelDesc').textContent = ch.arDescEn;
+
+            const buttons = document.querySelectorAll('#arModelPills button');
+            buttons.forEach((btn, i) => {
+                btn.className = i === idx ? 'btn btn-danger' : 'btn btn-outline-danger';
+            });
+        }
+
+        function transformArObject(deltaY, deltaX, deltaScale) {
+            arRotY += deltaY;
+            arRotX = arRotX === deltaX && deltaX !== 0 ? 0 : arRotX + deltaX;
+            arScale = Math.min(Math.max(arScale + deltaScale, 0.7), 1.6);
+            const visual = document.getElementById('ar3dObjectVisual');
+            visual.style.transform = `rotateY(${arRotY}deg) rotateX(${arRotX}deg) scale(${arScale})`;
+        }
+
+        function resetArObject() {
+            arRotY = 0;
+            arRotX = 0;
+            arScale = 1;
+            const visual = document.getElementById('ar3dObjectVisual');
+            if (visual) visual.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+        }
+
+        function toggleArCameraBg() {
+            document.getElementById('arStageBox').classList.toggle('camera-sim');
+        }
+
+        function speakArModelEn() {
+            const ch = ebookChapters[currentArIndex];
+            speakEnglishText(`${ch.arName}. ${ch.arDescEn}`);
+        }
+
+        // 8. เกมตอนจบนิทาน
+        const storyGameQuestions = [
+            {
+                qTh: 'คำถามที่ 1: ลูมินพบสิ่งวิเศษใดในห้องใต้หลังคาของคุณปู่เพื่อใช้ส่องดูดวงดาว?',
+                qEn: 'Golden Telescope',
+                sub: 'เลือกคำศัพท์ภาษาอังกฤษที่ตรงกับเนื้อหาในบทที่ 1',
+                options: [
+                    { text: '🔭 Golden Telescope (กล้องโทรทรรศน์สีทอง)', correct: true },
+                    { text: '🚢 Submarine (เรือดำน้ำ)', correct: false },
+                    { text: '🚲 Magic Bicycle (จักรยานวิเศษ)', correct: false }
+                ]
+            },
+            {
+                qTh: 'คำถามที่ 2: เมื่อพบ “ดาวหางน้อยหางสีฟ้า (Little Blue Comet)” หลงทาง ลูมินทำอย่างไร?',
+                qEn: 'Little Blue Comet',
+                sub: 'ทบทวนทักษะ EF และการช่วยเหลือผู้อื่นจากบทที่ 3',
+                options: [
+                    { text: '💫 เปิดแผนที่ดวงดาวและส่องไฟนำทางพากลับไปหาคุณแม่ดาวหาง', correct: true },
+                    { text: '😴 นอนหลับในจรวดแครอทโดยไม่สนใจ', correct: false },
+                    { text: '🏃 ขับจรวดหนีกลับบ้านทันที', correct: false }
+                ]
+            },
+            {
+                qTh: 'คำถามที่ 3: ดาวเคราะห์ดวงใดในบทที่ 4 ที่มีวงแหวนน้ำแข็งส่องประกายสวยงาม?',
+                qEn: 'Planet Saturn and its Magical Rings',
+                sub: 'เลือกคำศัพท์ภาษาอังกฤษของดาวเคราะห์ที่มีวงแหวน',
+                options: [
+                    { text: '🪐 Saturn (ดาวเสาร์)', correct: true },
+                    { text: '☀️ The Sun (ดวงอาทิตย์)', correct: false },
+                    { text: '🌧️ Rain Cloud (ก้อนเมฆฝน)', correct: false }
+                ]
+            }
+        ];
+
+        let gameStep = 0;
+        let gameScore = 0;
+
+        function openStoryGameModal() {
+            startStoryGame();
+            const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('storyGameModal'));
+            modal.show();
+        }
+
+        function openGameFromReader() {
+            const readerEl = document.getElementById('ebookReaderModal');
+            const readerModal = bootstrap.Modal.getInstance(readerEl);
+            if (readerModal) readerModal.hide();
+            openStoryGameModal();
+        }
+
+        function startStoryGame() {
+            gameStep = 0;
+            gameScore = 0;
+            document.getElementById('gameQuestionBox').classList.remove('d-none');
+            document.getElementById('gameSummaryBox').classList.add('d-none');
+            document.getElementById('gameFeedbackBox').classList.add('d-none');
+            renderGameStep();
+        }
+
+        function renderGameStep() {
+            const item = storyGameQuestions[gameStep];
+            document.getElementById('gameStepBadge').textContent = `ด่านที่ ${gameStep + 1} / ${storyGameQuestions.length}`;
+            document.getElementById('gameScoreText').textContent = gameScore;
+            document.getElementById('gameQuestionTitle').textContent = item.qTh;
+            document.getElementById('gameQuestionSub').textContent = item.sub;
+
+            const choicesBox = document.getElementById('gameChoicesContainer');
+            choicesBox.innerHTML = item.options.map(opt => `
+                <button type="button" class="btn btn-outline-dark text-start p-3 rounded-3 fw-semibold" onclick="answerGameQuestion(${opt.correct})">
+                    ${opt.text}
+                </button>
+            `).join('');
+        }
+
+        function speakGameQuestionEn() {
+            const item = storyGameQuestions[gameStep];
+            speakEnglishText(item.qEn);
+        }
+
+        function answerGameQuestion(isCorrect) {
+            const fb = document.getElementById('gameFeedbackBox');
+            fb.classList.remove('d-none', 'alert-success', 'alert-danger');
+            if (isCorrect) {
+                gameScore += 1;
+                fb.classList.add('alert-success');
+                fb.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i><strong>ถูกต้องเลย!</strong> เก่งมากครับ รับไปเลย 1 ดาว 🌟';
+                speakEnglishText('Great job! Correct answer!');
+            } else {
+                fb.classList.add('alert-danger');
+                fb.innerHTML = '<i class="bi bi-exclamation-circle-fill me-1"></i><strong>เกือบถูกแล้ว!</strong> ไปลุยด่านต่อไปกันเลย';
+                speakEnglishText('Nice try! Let us go to the next star.');
+            }
+            document.getElementById('gameScoreText').textContent = gameScore;
+
+            setTimeout(() => {
+                fb.classList.add('d-none');
+                gameStep += 1;
+                if (gameStep < storyGameQuestions.length) {
+                    renderGameStep();
+                } else {
+                    document.getElementById('gameQuestionBox').classList.add('d-none');
+                    const summaryBox = document.getElementById('gameSummaryBox');
+                    summaryBox.classList.remove('d-none');
+                    document.getElementById('gameFinalSummaryText').textContent =
+                        `คุณสะสมดาวได้ทั้งหมด ${gameScore} / ${storyGameQuestions.length} ดวง! รับเหรียญเกียรติยศ "นักสำรวจอวกาศของลูมิน" เรียบร้อยแล้ว`;
+                }
+            }, 1100);
+        }
+
+        // 9. รีวิวหนังสือนิทาน
+        const defaultReviews = [
+            {
+                name: 'คุณแม่พลอยไพลิน',
+                stars: 5,
+                format: 'โหมด E-Book 2 ภาษา + เสียง EN',
+                comment: 'ภาพสวยมากค่ะ เปิดอ่านในโหมด E-Book 2 ภาษาคู่กัน ลูกได้ฝึกฟังเสียงพากย์ภาษาอังกฤษสำเนียงชัดเจน จำคำศัพท์ดาวเคราะห์ได้ครบเลยค่ะ'
+            },
+            {
+                name: 'คุณพ่อธนภัทร',
+                stars: 5,
+                format: 'โหมด Interactive AR 3D',
+                comment: 'ลูกชายชอบโหมด Interactive AR 3D มากครับ หมุนดูจรวดแครอทกับวงแหวนดาวเสาร์ได้รอบทิศทางเลย เนื้อเรื่องสนุกและเสริมจินตนาการดีมากครับ'
+            },
+            {
+                name: 'คุณแม่วิภาวี',
+                stars: 5,
+                format: 'มินิเกมตอนจบนิทาน',
+                comment: 'พออ่านจบครบ 5 ตอนแล้วมีเกมภารกิจพิชิตดวงดาวให้เล่นตอนจบนิทานด้วย ลูกสนุกมาก ได้ทบทวนทักษะ EF และคำศัพท์ภาษาอังกฤษไปในตัวค่ะ'
+            },
+            {
+                name: 'คุณแม่พิมพ์ชนก',
+                stars: 4,
+                format: 'โหมด E-Book 2 ภาษา + เสียง EN',
+                comment: 'สารบัญเลือกเปิดอ่านเป็นตอนได้สะดวกมากค่ะ เนื้อหาอบอุ่นอ่านเข้าใจง่าย เหมาะกับอ่านก่อนนอนให้ลูกฟังทุกคืนเลยค่ะ'
+            }
+        ];
+
+        function getReviews() {
+            try {
+                const saved = localStorage.getItem('tw_reviews_clean_' + BOOK_ID);
+                if (saved) return JSON.parse(saved);
+            } catch (e) {}
+            localStorage.setItem('tw_reviews_clean_' + BOOK_ID, JSON.stringify(defaultReviews));
+            return defaultReviews;
+        }
+
+        function renderReviewsSection() {
+            const reviews = getReviews();
+            const total = reviews.length;
+            const sum = reviews.reduce((acc, r) => acc + Number(r.stars), 0);
+            const avg = total > 0 ? (sum / total).toFixed(1) : '5.0';
+
+            document.getElementById('topAvgScore').textContent = `${avg} / 5.0`;
+            document.getElementById('topReviewCount').textContent = total;
+            document.getElementById('summaryAvgRating').textContent = avg;
+            document.getElementById('summaryTotalReviews').textContent = total;
+            document.getElementById('starSelectFilter').value = String(activeStarFilter);
+
+            const breakdownBox = document.getElementById('starBreakdownContainer');
+            let breakdownHtml = '';
+            for (let star = 5; star >= 1; star--) {
+                const matching = reviews.filter(r => Number(r.stars) === star);
+                const count = matching.length;
+                const percent = total > 0 ? Math.round((count / total) * 100) : 0;
+                const sampleQuote = matching.length > 0
+                    ? `"${matching[0].comment.substring(0, 68)}..." — ${matching[0].name}`
+                    : 'ยังไม่มีความคิดเห็นในระดับดาวนี้';
+
+                const starIcons = '⭐'.repeat(star);
+                const isActive = activeStarFilter === star ? 'active border border-danger' : '';
+
+                breakdownHtml += `
+                    <div class="star-filter-row ${isActive}" onclick="filterReviewsByStar(${star})">
+                        <div class="row align-items-center g-2 small">
+                            <div class="col-4 col-md-2 fw-bold text-dark">${star} ดาว (${count})</div>
+                            <div class="col-8 col-md-4">
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${percent}%"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 text-muted text-truncate">
+                                <span class="me-1">${starIcons}</span> <em>${sampleQuote}</em>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            breakdownBox.innerHTML = breakdownHtml;
+
+            const filtered = activeStarFilter === 0
+                ? reviews
+                : reviews.filter(r => Number(r.stars) === activeStarFilter);
+
+            document.getElementById('activeStarFilterText').textContent = activeStarFilter === 0
+                ? `กำลังแสดง: ทุกระดับดาว (${reviews.length} รีวิว)`
+                : `กำลังแสดง: เฉพาะ ${activeStarFilter} ดาว (${filtered.length} รีวิว)`;
+
+            const listBox = document.getElementById('reviewListContainer');
+            if (filtered.length === 0) {
+                listBox.innerHTML = `
+                    <div class="p-4 bg-white rounded-4 border text-center w-100 text-muted">
+                        ยังไม่มีรีวิวในระดับ ${activeStarFilter} ดาว คลิก "แสดงทุกระดับดาว" เพื่อดูรีวิวทั้งหมด
+                    </div>
+                `;
+                return;
+            }
+
+            listBox.innerHTML = filtered.map(r => {
+                let starsHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    starsHtml += i <= r.stars
+                        ? '<i class="bi bi-star-fill"></i>'
+                        : '<i class="bi bi-star"></i>';
+                }
+                return `
+                    <div class="review-card-item">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="text-warning">${starsHtml}</div>
+                                <span class="badge bg-warning text-dark rounded-pill">${r.stars} / 5 ดาว</span>
+                            </div>
+                            <p class="text-secondary fst-italic mb-3 small lh-lg">
+                                "${r.comment}"
+                            </p>
+                            <div class="mt-auto pt-2 border-top d-flex align-items-center">
+                                <i class="bi bi-person-circle fs-3 text-danger me-2"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0 small">${r.name}</h6>
+                                    <small class="text-muted">${r.format || 'ผู้อ่านนิทาน'}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterReviewsByStar(starLevel) {
+            activeStarFilter = Number(starLevel);
+            renderReviewsSection();
+        }
+
+        function scrollReviewRow(offset) {
+            const container = document.getElementById('reviewListContainer');
+            container.scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        function addBookReview(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewerName').value.trim();
+            const stars = parseInt(document.getElementById('reviewerStars').value, 10);
+            const format = document.getElementById('reviewerFormat').value.trim();
+            const comment = document.getElementById('reviewerComment').value.trim();
+
+            const reviews = getReviews();
+            reviews.unshift({ name, stars, format, comment });
+            localStorage.setItem('tw_reviews_clean_' + BOOK_ID, JSON.stringify(reviews));
+
+            activeStarFilter = 0;
+            renderReviewsSection();
+            document.getElementById('newReviewForm').reset();
+        }
+
+        // 10. แนะนำหนังสือนิทานน่าอ่านเรื่องถัดไป
+        function renderRecommendedBooks() {
+            const recommendedCatalog = [
+                {
+                    id: 'magic_bakery',
+                    title: 'ร้านขนมเวทมนตร์ 2 ภาษา',
+                    age: '🎨 4 - 6 ขวบ',
+                    categoryBadge: 'นิทาน 2 ภาษา',
+                    author: 'ครูเคท สอนภาษาเด็ก',
+                    desc: 'สนุกกับการผสมสูตรขนมเค้กพร้อมเรียนรู้คำศัพท์ภาษาอังกฤษในชีวิตประจำวัน',
+                    img: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80',
+                    link: 'Shoptale.html'
+                },
+                {
+                    id: 'little_detective',
+                    title: 'นักสืบจิ๋วไขปริศนาพิพิธภัณฑ์ลึกลับ',
+                    age: '🚀 7 ขวบขึ้นไป',
+                    categoryBadge: 'ฝึกทักษะการคิด',
+                    author: 'ชญานิน',
+                    desc: 'ฝึกทักษะการสังเกตและการคิดวิเคราะห์ผ่านคดีปริศนาสุดตื่นเต้นในพิพิธภัณฑ์',
+                    img: 'https://images.unsplash.com/photo-1474932430478-367dbb6832c1?auto=format&fit=crop&w=600&q=80',
+                    link: 'Shoptale.html'
+                },
+                {
+                    id: 'kungkink_bath',
+                    title: 'กุ๋งกิ๋งอาบน้ำป๋อมแป๋ม',
+                    age: '👶 0 - 3 ขวบ',
+                    categoryBadge: 'นิทานคำคล้องจอง',
+                    author: 'มนฤดี ทองกลอย',
+                    desc: 'นิทานคำคล้องจองแสนสนุกช่วยฝึกกิจวัตรประจำวันสำหรับเด็กเล็กวัยเริ่มต้น',
+                    img: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
+                    link: 'Shoptale.html'
+                }
+            ];
+
+            const box = document.getElementById('recommendedBooksContainer');
+            box.innerHTML = recommendedCatalog.map(book => `
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card next-book-card border shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="${book.img}" class="next-book-img" alt="${book.title}">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark">${book.age}</span>
+                                <span class="badge bg-danger bg-opacity-10 text-danger">${book.categoryBadge}</span>
+                            </div>
+                            <h5 class="fw-bold">${book.title}</h5>
+                            <p class="text-muted small mb-3">ผู้แต่ง: ${book.author} — ${book.desc}</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+                                <span class="fw-bold text-danger small"><i class="bi bi-journal-Bookmark-fill me-1"></i>นิทานแนะนำ</span>
+                                <a href="${resolvePagePath(book.link)}" class="btn btn-sm btn-outline-danger rounded-pill px-3">
+                                    ดูในร้านค้านิทาน
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // เริ่มต้นการทำงานเมื่อโหลดหน้าเว็บ
+        document.addEventListener('DOMContentLoaded', () => {
+            applySmartNavigationLinks();
+            loadReadCount();
+            renderFavoriteState();
+            renderEbookPage();
+            renderReviewsSection();
+            renderRecommendedBooks();
+        });
+    </script>
+
+</body>
+</html>
