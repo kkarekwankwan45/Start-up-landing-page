@@ -18,8 +18,9 @@
             background-color: #fffdf9;
             scroll-behavior: smooth;
             padding-top: 64px;
+            margin: 0;
         }
-        /* Navbar Styling (เหมือน index.html และจัดระยะสวยงามเมื่อหน้าจอเล็กลง) */
+        /* Navbar Styling */
         .navbar {
             background-color: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(10px);
@@ -55,13 +56,13 @@
             color: #fff;
             transform: translateY(-2px);
         }
-        /* Carousel Styling (Fit พอดีหน้าเพจ ไม่เลื่อนขึ้นลงตามปุ่ม และไร้ช่องว่างกับ Navbar) */
+        /* Carousel Styling (Responsive พอดีทุกหน้าจอรวมถึงหน้าจอโทรศัพท์) */
         .shop-carousel {
             margin-top: 0;
             overflow: hidden;
         }
         .carousel-slide-bg {
-            height: 400px;
+            min-height: 400px;
             display: flex;
             align-items: center;
             padding: 30px 0 50px;
@@ -69,14 +70,20 @@
         }
         @media (max-width: 991.98px) {
             .carousel-slide-bg {
-                height: 480px;
-                padding: 25px 0 45px;
+                min-height: 480px;
+                height: auto;
+                padding: 30px 15px 55px;
             }
         }
         @media (max-width: 575.98px) {
             .carousel-slide-bg {
-                height: 520px;
-                padding: 20px 0 45px;
+                min-height: 540px;
+                height: auto;
+                padding: 25px 12px 60px;
+            }
+            .carousel-slide-bg h1.fs-2,
+            .carousel-slide-bg h2.fs-3 {
+                font-size: 1.35rem !important;
             }
         }
         .slide-story {
@@ -88,7 +95,7 @@
         .slide-review {
             background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
         }
-        /* Search Bar Box (ไร้ช่องว่างรอยต่อกับ Carousel) */
+        /* Search Bar Box */
         .search-wrapper {
             background: #ffffff;
             border-radius: 20px;
@@ -232,7 +239,6 @@
                             <i class="bi bi-star-fill text-warning me-1"></i> รีวิว & ให้คะแนนร้าน
                         </button>
                     </li>
-                    <!-- ระบบลงทะเบียนและแสดงสถานะสมาชิก/แพ็กเกจ -->
                     <li class="nav-item" id="navRegisterContainer">
                         <button type="button" class="btn btn-brand btn-sm rounded-pill px-3 py-2" id="navRegisterBtn" data-bs-toggle="modal" data-bs-target="#registerModal">
                             <i class="bi bi-people-fill me-1"></i> สมัครสมาชิก
@@ -243,7 +249,7 @@
         </div>
     </nav>
 
-    <!-- ================= 2. CAROUSEL (แนะนำนิทาน, Package, รีวิว & ให้คะแนน) ================= -->
+    <!-- ================= 2. CAROUSEL ================= -->
     <div id="shopCarousel" class="carousel slide shop-carousel" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#shopCarousel" data-bs-slide-to="0" class="active bg-danger"></button>
@@ -275,7 +281,7 @@
                                 </div>
                             </div>
                             <div class="col-12 col-lg-5 text-center">
-                                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-4 shadow border border-4 border-white" style="max-height: 210px; object-fit: cover;" alt="Featured Story">
+                                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-4 shadow border border-4 border-white" style="max-height: 190px; object-fit: cover;" alt="Featured Story">
                             </div>
                         </div>
                     </div>
@@ -354,7 +360,7 @@
         </button>
     </div>
 
-    <!-- ================= 3. SEARCH BAR (ค้นหาชื่อนิทาน / คนแต่ง) ================= -->
+    <!-- ================= 3. SEARCH BAR ================= -->
     <section class="container" id="book-catalog">
         <div class="search-wrapper p-4 border">
             <div class="row g-3 align-items-center">
@@ -393,11 +399,11 @@
         </div>
     </section>
 
-    <!-- ================= 4. MAIN SHOP CONTENT (Sidebar หมวดหมู่ + รายการนิทานตาม Package/ช่วงวัย) ================= -->
+    <!-- ================= 4. MAIN SHOP CONTENT ================= -->
     <section class="container py-5">
         <div class="row g-4">
             
-            <!-- ฝั่งซ้าย: แถบ Bar ด้านข้างแบ่งตามหมวดหมู่ และกรองตาม Package -->
+            <!-- ฝั่งซ้าย: แถบหมวดหมู่ และกรองตาม Package -->
             <div class="col-12 col-lg-3">
                 <div class="sidebar-card border p-4 shadow-sm">
                     <h5 class="fw-bold mb-3 text-danger">
@@ -464,7 +470,6 @@
 
             <!-- ฝั่งขวา: รายการการ์ดหนังสือนิทาน -->
             <div class="col-12 col-lg-9">
-                <!-- แถบแจ้งสถานะผลการค้นหา -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="fw-bold mb-0" id="resultTitle">รายการหนังสือนิทานทั้งหมด</h5>
                     <span class="badge bg-light text-dark border px-3 py-2 rounded-pill" id="bookCountBadge">พบนิทาน 9 เรื่อง</span>
@@ -473,7 +478,7 @@
                 <!-- Grid แสดงรายการหนังสือนิทาน -->
                 <div class="row g-4" id="bookGrid">
 
-                    <!-- Book 1: 0-3 ขวบ | Basic 0฿ | Bedtime (ล็อค - กำลังพัฒนา) -->
+                    <!-- Book 1 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="0-3" data-category="bedtime" data-package="Basic" data-title="กุ๋งกิ๋งอาบน้ำป๋อมแป๋ม" data-author="มนฤดี ทองกลอย">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -491,13 +496,13 @@
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                         <span class="text-muted ms-1">(5.0)</span>
                                     </div>
-                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Basic" onclick="openStoryAlert('กุ๋งกิ๋งอาบน้ำป๋อมแป๋ม', 'Basic 0 บาท', 'มนฤดี ทองกลอย')"><i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา</button>
+                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Basic" onclick="openStoryAlert('กุ๋งกิ๋งอาบน้ำป๋อมแป๋ม', 'Basic 0 บาท', 'มนฤดี ทองกลอย')"><i class="bi bi-clock-history me-1"></i>เร็วๆ นี้</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Book 2: 0-3 ขวบ | Standard 150฿ | Bedtime (ล็อค - กำลังพัฒนา) -->
+                    <!-- Book 2 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="0-3" data-category="bedtime" data-package="Standard" data-title="เพลงกล่อมคุณหมีแห่งป่าแสงจันทร์" data-author="น้านกฮูก นักเล่านิทาน">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -515,13 +520,13 @@
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
                                         <span class="text-muted ms-1">(4.8)</span>
                                     </div>
-                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Standard" onclick="openStoryAlert('เพลงกล่อมคุณหมีแห่งป่าแสงจันทร์', 'Standard 150 บาท', 'น้านกฮูก นักเล่านิทาน')"><i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา</button>
+                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Standard" onclick="openStoryAlert('เพลงกล่อมคุณหมีแห่งป่าแสงจันทร์', 'Standard 150 บาท', 'น้านกฮูก นักเล่านิทาน')"><i class="bi bi-clock-history me-1"></i>เร็วๆ นี้</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Book 3: 0-3 ขวบ | Premium 550฿ | Bilingual (ล็อค - กำลังพัฒนา) -->
+                    <!-- Book 3 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="0-3" data-category="bilingual" data-package="Premium" data-title="สีสันแสนสนุกของเจ้าลูกเจี๊ยบ" data-author="ดร.อลิสา พัฒนาการเด็ก">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -539,13 +544,13 @@
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                         <span class="text-muted ms-1">(4.9)</span>
                                     </div>
-                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Premium" onclick="openStoryAlert('สีสันแสนสนุกของเจ้าลูกเจี๊ยบ', 'Premium 550 บาท', 'ดร.อลิสา พัฒนาการเด็ก')"><i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา</button>
+                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Premium" onclick="openStoryAlert('สีสันแสนสนุกของเจ้าลูกเจี๊ยบ', 'Premium 550 บาท', 'ดร.อลิสา พัฒนาการเด็ก')"><i class="bi bi-clock-history me-1"></i>เร็วๆ นี้</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Book 4: 4-6 ขวบ | Basic 0฿ | EF (ล็อค - กำลังพัฒนา) -->
+                    <!-- Book 4 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="4-6" data-category="ef" data-package="Basic" data-title="ไดโนเสาร์น้อยหัดแบ่งปัน" data-author="พี่แตงโม โลกนิทาน">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -563,13 +568,13 @@
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
                                         <span class="text-muted ms-1">(4.7)</span>
                                     </div>
-                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Basic" onclick="openStoryAlert('ไดโนเสาร์น้อยหัดแบ่งปัน', 'Basic 0 บาท', 'พี่แตงโม โลกนิทาน')"><i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา</button>
+                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Basic" onclick="openStoryAlert('ไดโนเสาร์น้อยหัดแบ่งปัน', 'Basic 0 บาท', 'พี่แตงโม โลกนิทาน')"><i class="bi bi-clock-history me-1"></i>เร็วๆ นี้</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Book 5: 4-6 ขวบ | Standard 150฿ | Bilingual (ล็อค - กำลังพัฒนา) -->
+                    <!-- Book 5 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="4-6" data-category="bilingual" data-package="Standard" data-title="ร้านขนมเวทมนตร์ 2 ภาษา" data-author="ครูเคท สอนภาษาเด็ก">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -587,13 +592,13 @@
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                         <span class="text-muted ms-1">(4.9)</span>
                                     </div>
-                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Standard" onclick="openStoryAlert('ร้านขนมเวทมนตร์ 2 ภาษา', 'Standard 150 บาท', 'ครูเคท สอนภาษาเด็ก')"><i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา</button>
+                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Standard" onclick="openStoryAlert('ร้านขนมเวทมนตร์ 2 ภาษา', 'Standard 150 บาท', 'ครูเคท สอนภาษาเด็ก')"><i class="bi bi-clock-history me-1"></i>เร็วๆ นี้</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Book 6: 4-6 ขวบ | Premium 550฿ | Adventure AR (ปลดล็อกได้เรื่องเดียวเพราะตรงเงื่อนไข PretaleStory/Tale_Rubbit.html) -->
+                    <!-- Book 6 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="4-6" data-category="adventure" data-package="Premium" data-title="กระต่ายน้อยนักสำรวจดาว" data-author="ครูพี่แพรว นิทานดาวเหนือ">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -617,7 +622,7 @@
                         </div>
                     </div>
 
-                    <!-- Book 7: 7+ ขวบ | Basic 0฿ | Bedtime (ล็อค - กำลังพัฒนา) -->
+                    <!-- Book 7 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="7+" data-category="bedtime" data-package="Basic" data-title="ความลับของมหาสมุทรและสัตว์โลก" data-author="กัปตันต้นกล้า">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -635,13 +640,13 @@
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
                                         <span class="text-muted ms-1">(4.5)</span>
                                     </div>
-                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Basic" onclick="openStoryAlert('ความลับของมหาสมุทรและสัตว์โลก', 'Basic 0 บาท', 'กัปตันต้นกล้า')"><i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา</button>
+                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Basic" onclick="openStoryAlert('ความลับของมหาสมุทรและสัตว์โลก', 'Basic 0 บาท', 'กัปตันต้นกล้า')"><i class="bi bi-clock-history me-1"></i>เร็วๆ นี้</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Book 8: 7+ ขวบ | Standard 150฿ | EF (ล็อค - กำลังพัฒนา) -->
+                    <!-- Book 8 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="7+" data-category="ef" data-package="Standard" data-title="นักสืบจิ๋วไขปริศนาพิพิธภัณฑ์ลึกลับ" data-author="ชญานิน นักเขียนรางวัลเยาวชน">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -659,13 +664,13 @@
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
                                         <span class="text-muted ms-1">(4.8)</span>
                                     </div>
-                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Standard" onclick="openStoryAlert('นักสืบจิ๋วไขปริศนาพิพิธภัณฑ์ลึกลับ', 'Standard 150 บาท', 'ชญานิน นักเขียนรางวัลเยาวชน')"><i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา</button>
+                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Standard" onclick="openStoryAlert('นักสืบจิ๋วไขปริศนาพิพิธภัณฑ์ลึกลับ', 'Standard 150 บาท', 'ชญานิน นักเขียนรางวัลเยาวชน')"><i class="bi bi-clock-history me-1"></i>เร็วๆ นี้</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Book 9: 7+ ขวบ | Premium 550฿ | Adventure AR (ล็อค - กำลังพัฒนา) -->
+                    <!-- Book 9 -->
                     <div class="col-12 col-md-6 col-xl-4 book-item" data-age="7+" data-category="adventure" data-package="Premium" data-title="ผู้กล้าตัวน้อยกู้คืนอาณาจักรสีรุ้ง" data-author="เมฆา แฟนตาซีสตูดิโอ">
                         <div class="card book-card border-0 shadow-sm h-100">
                             <div class="book-img-wrapper">
@@ -683,7 +688,7 @@
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                         <span class="text-muted ms-1">(5.0)</span>
                                     </div>
-                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Premium" onclick="openStoryAlert('ผู้กล้าตัวน้อยกู้คืนอาณาจักรสีรุ้ง', 'Premium 550 บาท', 'เมฆา แฟนตาซีสตูดิโอ')"><i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา</button>
+                                    <button class="btn btn-sm btn-secondary rounded-pill px-3" data-required-package="Premium" onclick="openStoryAlert('ผู้กล้าตัวน้อยกู้คืนอาณาจักรสีรุ้ง', 'Premium 550 บาท', 'เมฆา แฟนตาซีสตูดิโอ')"><i class="bi bi-clock-history me-1"></i>เร็วๆ นี้</button>
                                 </div>
                             </div>
                         </div>
@@ -703,7 +708,7 @@
         </div>
     </section>
 
-    <!-- ================= 5. MODAL สำหรับเขียนรีวิวและให้คะแนน (ครบทั้ง 9 เรื่องในระบบ) ================= -->
+    <!-- ================= 5. MODAL สำหรับเขียนรีวิวและให้คะแนน ================= -->
     <div class="modal fade" id="ratingModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0 shadow">
@@ -747,15 +752,15 @@
         </div>
     </div>
 
-    <!-- ================= 6. ระบบ MODAL เข้าสู่ระบบ, ลงทะเบียน + ปุ่มข้อเสนอ Package, ชำระเงิน และปลดล็อกนิทาน ================= -->
+    <!-- ================= 6. MODAL สมาชิก แพ็กเกจ และการชำระเงิน ================= -->
 
-    <!-- 6.1 Modal เข้าสู่ระบบ (Login) -->
+    <!-- 6.1 Modal เข้าสู่ระบบ -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
                 <div class="modal-header bg-dark text-white border-0 p-4">
                     <h5 class="modal-title fw-bold" id="loginModalLabel">
-                        <i class="bi bi-box-arrow-in-right text-warning me-2"></i>เข้าสู่ระบบสมาชิก TaleWonder
+                        <i class="bi bi-box-arrow-in-right text-warning me-2"></i>เข้าสู่บัญชีสมาชิก TaleWonder
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -774,7 +779,7 @@
                         </div>
                         <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-brand rounded-pill py-2 fw-semibold">
-                                เข้าสู่ระบบ
+                                เข้าสู่บัญชีสมาชิก
                             </button>
                         </div>
                         <div class="text-center mt-3 small text-muted">
@@ -786,7 +791,7 @@
         </div>
     </div>
 
-    <!-- 6.2 Modal ลงทะเบียนสมาชิก (เหมือน index.html พร้อมปุ่มข้อเสนอ Package ให้เลือกสมัคร) -->
+    <!-- 6.2 Modal ลงทะเบียนสมาชิกและข้อเสนอแพ็กเกจ -->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
@@ -797,7 +802,6 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <!-- ส่วนฟอร์มลงทะเบียน (ซ่อนอัตโนมัติหากเข้าสู่ระบบแล้วเพื่อแสดงปุ่มอัปเกรด Package) -->
                     <div id="regFormSection">
                         <h6 class="fw-bold text-danger mb-3"><i class="bi bi-person-vcard me-1"></i>1. กรอกข้อมูลลงทะเบียนสมาชิก</h6>
                         <form id="registerForm">
@@ -835,15 +839,15 @@
                             </div>
                         </form>
                         <div class="text-center mt-2 small text-muted">
-                            มีบัญชีสมาชิกอยู่แล้ว? <a href="#" class="text-danger fw-bold text-decoration-none" id="switchToLoginLink">เข้าสู่ระบบที่นี่</a>
+                            มีบัญชีสมาชิกอยู่แล้ว? <a href="#" class="text-danger fw-bold text-decoration-none" id="switchToLoginLink">เข้าใช้งานที่นี่</a>
                         </div>
                         <hr class="my-4">
                     </div>
 
-                    <!-- ส่วนปุ่มข้อเสนอ Package ให้ลูกค้ากดสมัครและเปิดหน้าต่างชำระเงินเหมือน index.html/#pricing -->
+                    <!-- ส่วนปุ่มข้อเสนอ Package -->
                     <div>
                         <h6 class="fw-bold text-dark mb-2"><i class="bi bi-stars text-warning me-1"></i>ข้อเสนอแพ็กเกจสุดคุ้ม (คลิกเลือกแพ็กเกจเพื่อสมัคร/อัปเกรด)</h6>
-                        <p class="text-muted small mb-3">เมื่อเลือกแพ็กเกจที่สนใจ ระบบจะแสดงหน้าต่างยืนยันคำสั่งซื้อและชำระเงินทันที</p>
+                        <p class="text-muted small mb-3">เลือกแพ็กเกจที่สนใจเพื่อดำเนินการยืนยันคำสั่งซื้อและชำระเงินได้ทันที</p>
                         <div class="row g-3">
                             <div class="col-12 col-md-4">
                                 <div class="border rounded-4 p-3 h-100 bg-light text-center d-flex flex-column">
@@ -885,7 +889,7 @@
         </div>
     </div>
 
-    <!-- 6.3 Modal ยืนยันว่าข้อมูลลงทะเบียนถูกต้องหรือไม่ -->
+    <!-- 6.3 Modal ยืนยันความถูกต้องของข้อมูล -->
     <div class="modal fade" id="confirmRegModal" tabindex="-1" aria-labelledby="confirmRegModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
@@ -917,7 +921,7 @@
         </div>
     </div>
 
-    <!-- 6.4 Modal ยืนยันการสั่งซื้อและชำระเงิน (เหมือนหน้า index.html/#pricing) -->
+    <!-- 6.4 Modal ยืนยันการสั่งซื้อและชำระเงิน -->
     <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
@@ -980,7 +984,7 @@
                                         <input type="tel" class="form-control form-control-sm rounded-3" id="tmPhoneInput" placeholder="08X-XXX-XXXX" maxlength="10">
                                     </div>
                                     <div class="mb-2">
-                                        <label class="form-label small fw-semibold">รหัส OTP 6 หลัก (จำลอง) <span class="text-danger">*</span></label>
+                                        <label class="form-label small fw-semibold">รหัส OTP 6 หลัก <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control form-control-sm rounded-3" id="tmOtpInput" placeholder="กรอกตัวเลข 6 หลัก เช่น 123456" maxlength="6">
                                     </div>
                                 </div>
@@ -1047,7 +1051,7 @@
         </div>
     </div>
 
-    <!-- 6.5 Modal แสดงการปลดล็อกนิทานเมื่อกดอ่านนิทานเรื่องนั้นสำเร็จ -->
+    <!-- 6.5 Modal แสดงการปลดล็อกนิทาน -->
     <div class="modal fade" id="unlockStoryModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden text-center">
@@ -1080,14 +1084,19 @@
                 อัปเดตหนังสือนิทานเข้าใหม่ รีวิวจากผู้ปกครอง และโปรโมชั่นแพ็กเกจรายเดือนก่อนใคร
             </p>
             <div class="d-flex justify-content-center gap-3 mb-4">
-                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.pim.ac.th" target="_blank" class="social-icon" aria-label="Website">
+                    <i class="bi bi-globe"></i>
+                </a>
+                <a href="https://web.facebook.com/pimfanpage?_rdc=1&_rdr#" target="_blank" class="social-icon" aria-label="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/teampim?utm_source=ig_web_button_share_sheet&vrfl=ZDNlZDc0MzIxNw%3D%3D" target="_blank" class="social-icon" aria-label="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
             </div>
             <hr class="border-secondary my-4">
             <p class="small text-secondary mb-0">
-                &copy; 2026 TaleWonder Studio Co., Ltd. All Rights Reserved. | TaleWonder Group • CAI 
+                &copy; 2026 TaleWonder Studio Co., Ltd. All Rights Reserved. | TaleWonder Group • CAI
             </p>
         </div>
     </footer>
@@ -1095,7 +1104,7 @@
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- ================= JAVASCRIPT สำหรับระบบค้นหาและกรองนิทาน ================= -->
+    <!-- ================= JAVASCRIPT สำหรับค้นหาและกรองนิทาน ================= -->
     <script>
         let currentAge = 'all';
         let currentCategory = 'all';
@@ -1135,7 +1144,6 @@
             noResultBox.classList.toggle('d-none', visibleCount > 0);
         }
 
-        // Event: พิมพ์ค้นหาชื่อเรื่องหรือชื่อคนแต่ง
         searchInput.addEventListener('input', filterBooks);
 
         clearSearchBtn.addEventListener('click', () => {
@@ -1143,7 +1151,6 @@
             filterBooks();
         });
 
-        // Event: กดสลับแท็บช่วงอายุ (0-3, 4-6, 7+)
         document.querySelectorAll('#ageTabFilter .nav-link').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('#ageTabFilter .nav-link').forEach(b => b.classList.remove('active'));
@@ -1153,7 +1160,6 @@
             });
         });
 
-        // Event: กดเลือกหมวดหมู่แถบด้านข้าง (Sidebar)
         document.querySelectorAll('#categoryFilter .category-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('#categoryFilter .category-btn').forEach(b => b.classList.remove('active'));
@@ -1163,7 +1169,6 @@
             });
         });
 
-        // Event: กดกรองตามระดับ Package (Basic / Standard / Premium)
         document.querySelectorAll('input[name="packageRadio"]').forEach(radio => {
             radio.addEventListener('change', function () {
                 currentPackage = this.value;
@@ -1220,7 +1225,6 @@
             Premium: { maxPerDay: 55, rank: 3, label: 'Premium 550 บาท' }
         };
 
-        // เงื่อนไขนิทานเรื่องเดียวที่เปิดให้ปลดล็อกและเชื่อมกับ PretaleStory/Tale_Rubbit.html
         const UNLOCKABLE_STORY_CONDITION = {
             titleKeyword: 'กระต่ายน้อยนักสำรวจดาว',
             author: 'ครูพี่แพรว นิทานดาวเหนือ',
@@ -1298,7 +1302,6 @@
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
                 } catch (e) {}
             } else if (state && winSync.userState && winSync.userState.email === state.email) {
-                // ซิงก์สถานะแพ็กเกจและจำนวนการอ่านล่าสุดข้ามหน้าเพจ
                 const rankLocal = PACKAGE_RULES[state.currentPackage] ? PACKAGE_RULES[state.currentPackage].rank : 1;
                 const rankWin = PACKAGE_RULES[winSync.userState.currentPackage] ? PACKAGE_RULES[winSync.userState.currentPackage].rank : 1;
                 if (rankWin > rankLocal || (winSync.userState.storiesReadToday || 0) > (state.storiesReadToday || 0)) {
@@ -1359,17 +1362,20 @@
                 sessionStorage.removeItem(SESSION_ACTIVE_KEY);
             } catch (e) {}
             writeWindowSync({ userState: null });
-            window.open('', '_self', '');
-            window.close();
-            setTimeout(function () {
-                document.body.innerHTML =
-                    '<div class="d-flex flex-column justify-content-center align-items-center vh-100 bg-dark text-white text-center p-4" style="font-family: Prompt, sans-serif;">' +
-                        '<i class="bi bi-power display-1 text-danger mb-3"></i>' +
-                        '<h3 class="fw-bold">คุณได้ออกจากระบบแล้ว</h3>' +
-                        '<p class="text-secondary">ระบบได้ตัดการเชื่อมต่อและปิดสถานะการใช้งานโดยอัตโนมัติ</p>' +
-                        '<a href="' + getIndexUrl('#pricing') + '" class="btn btn-danger rounded-pill px-4 mt-2">กลับเข้าสู่หน้าเว็บใหม่</a>' +
-                    '</div>';
-            }, 120);
+
+            document.documentElement.style.margin = '0';
+            document.documentElement.style.padding = '0';
+            document.documentElement.style.height = '100%';
+            document.body.style.margin = '0';
+            document.body.style.padding = '0';
+            document.body.style.overflow = 'hidden';
+            document.body.innerHTML =
+                '<div class="d-flex flex-column justify-content-center align-items-center w-100 vh-100 bg-dark text-white text-center p-4 m-0" style="font-family: \'Prompt\', sans-serif; position: fixed; inset: 0; z-index: 9999;">' +
+                    '<i class="bi bi-book-half display-1 text-danger mb-3"></i>' +
+                    '<h3 class="fw-bold mb-2">ขอบคุณที่ร่วมเดินทางในโลกนิทาน TaleWonder</h3>' +
+                    '<p class="text-secondary mb-4">แล้วพบกับเรื่องราวมหัศจรรย์ครั้งใหม่ได้ทุกวัน</p>' +
+                    '<a href="' + getIndexUrl('#pricing') + '" class="btn btn-brand rounded-pill px-4 py-2 fw-semibold">กลับสู่หน้าหลัก</a>' +
+                '</div>';
         }
 
         window.addEventListener('storage', function (e) {
@@ -1399,7 +1405,6 @@
             const paymentModal = paymentModalEl ? new bootstrap.Modal(paymentModalEl) : null;
             const unlockStoryModal = unlockStoryModalEl ? new bootstrap.Modal(unlockStoryModalEl) : null;
 
-            // ตรวจสอบและซิงก์สถานะเริ่มต้นระหว่าง index.html, Shoptale.html และทุกหน้าที่เชื่อมต่อ
             const initState = getState();
             if (initState && initState.isLoggedIn) {
                 const today = new Date().toISOString().slice(0, 10);
@@ -1410,7 +1415,6 @@
                 saveState(initState);
             }
 
-            // ซิงก์สถานะก่อนเปลี่ยนหน้าไปยังเพจที่เชื่อมต่อทั้งหมด
             document.querySelectorAll('a[href]').forEach(function (link) {
                 link.addEventListener('click', function () {
                     const currentState = getState();
@@ -1420,7 +1424,6 @@
                 });
             });
 
-            // สลับหน้าต่าง Login <-> Register
             const switchToRegisterLink = document.getElementById('switchToRegisterLink');
             if (switchToRegisterLink) {
                 switchToRegisterLink.addEventListener('click', function (e) {
@@ -1460,7 +1463,7 @@
                                     state.firstName + ' ' + state.lastName + ' (' + pkg + ' • อ่าน ' + readCount + '/' + rule.maxPerDay + ')' +
                                 '</button>' +
                                 '<button type="button" class="btn btn-outline-dark btn-sm rounded-pill px-3" id="sharedLogoutBtn">' +
-                                    '<i class="bi bi-box-arrow-right me-1"></i>Logout' +
+                                    '<i class="bi bi-box-arrow-right me-1"></i>ออก' +
                                 '</button>' +
                             '</div>';
 
@@ -1472,7 +1475,7 @@
                         navContainer.innerHTML =
                             '<div class="d-flex align-items-center gap-2 flex-wrap my-1 my-xl-0">' +
                                 '<button type="button" class="btn btn-outline-dark btn-sm rounded-pill px-3 py-2" data-bs-toggle="modal" data-bs-target="#loginModal">' +
-                                    '<i class="bi bi-box-arrow-in-right me-1"></i> เข้าสู่ระบบ' +
+                                    '<i class="bi bi-box-arrow-in-right me-1"></i> เข้าใช้งาน' +
                                 '</button>' +
                                 '<button type="button" class="btn btn-brand btn-sm rounded-pill px-3 py-2" id="navRegisterBtn" data-bs-toggle="modal" data-bs-target="#registerModal">' +
                                     '<i class="bi bi-people-fill me-1"></i> สมัครสมาชิก' +
@@ -1481,7 +1484,6 @@
                     }
                 }
 
-                // อัปเดตปุ่มข้อเสนอ Package ในหน้าต่าง #registerModal
                 const defaultOfferLabels = {
                     Basic: 'เริ่มต้นใช้งานฟรี',
                     Standard: 'สมัครแพ็กเกจ 150 บาท',
@@ -1508,7 +1510,6 @@
                     }
                 });
 
-                // อัปเดตปุ่มในการ์ดหนังสือ: ปลดล็อกเฉพาะเรื่อง "กระต่ายน้อยนักสำรวจดาว" ที่ตรงเงื่อนไขครบ ส่วนเรื่องอื่นล็อคไว้เพราะกำลังพัฒนา
                 document.querySelectorAll('.book-item').forEach(function (item) {
                     const storyPkg = item.getAttribute('data-package') || 'Basic';
                     const storyTitle = item.getAttribute('data-title') || '';
@@ -1520,7 +1521,7 @@
 
                     if (!canEverUnlock) {
                         actionBtn.className = 'btn btn-sm btn-secondary rounded-pill px-3';
-                        actionBtn.innerHTML = '<i class="bi bi-lock-fill me-1"></i>กำลังพัฒนา';
+                        actionBtn.innerHTML = '<i class="bi bi-clock-history me-1"></i>เร็วๆ นี้';
                         return;
                     }
 
@@ -1543,7 +1544,6 @@
                 });
             }
 
-            // สลับการแสดงผลฟอร์มชำระเงินตามช่องทาง
             function updatePaymentDetailView() {
                 const selected = document.querySelector('input[name="paymentMethod"]:checked');
                 const method = selected ? selected.value : 'สแกนจ่าย';
@@ -1595,7 +1595,6 @@
                 if (paymentModal) paymentModal.show();
             }
 
-            // เมื่อกดปุ่มข้อเสนอ Package ในหน้าต่างสมัครสมาชิก
             document.querySelectorAll('.pkg-offer-btn').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     const pkgName = this.getAttribute('data-pkg');
@@ -1603,11 +1602,11 @@
 
                     if (state && state.isLoggedIn && Array.isArray(state.purchasedPackages)) {
                         if (state.purchasedPackages.includes(pkgName)) {
-                            alert('คุณได้สมัครและเริ่มต้นใช้งาน ' + pkgName + ' Package ไปแล้ว (สามารถซื้อได้เพียงครั้งเดียว)');
+                            alert('คุณได้สมัครและเริ่มต้นใช้งาน ' + pkgName + ' Package เรียบร้อยแล้ว');
                             return;
                         }
                         if (state.currentPackage === 'Premium' && pkgName === 'Standard') {
-                            alert('คุณใช้งานแพ็กเกจสูงสุด (Premium Package) อยู่แล้ว ไม่สามารถซื้อซ้ำได้');
+                            alert('คุณกำลังใช้งานแพ็กเกจสูงสุด (Premium Package) อยู่แล้ว');
                             return;
                         }
                     }
@@ -1636,7 +1635,6 @@
                 });
             });
 
-            // ระบบ Login (เชื่อมต่อฐานข้อมูลสมาชิกกับ index.html และทุกหน้า)
             const loginForm = document.getElementById('loginForm');
             if (loginForm) {
                 loginForm.addEventListener('submit', function (e) {
@@ -1666,7 +1664,6 @@
                 });
             }
 
-            // ระบบส่งฟอร์มลงทะเบียน
             const registerForm = document.getElementById('registerForm');
             if (registerForm) {
                 registerForm.addEventListener('submit', function (e) {
@@ -1740,7 +1737,6 @@
                 });
             }
 
-            // ยืนยันการชำระเงินแพ็กเกจ Standard / Premium
             const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
             if (confirmPaymentBtn) {
                 confirmPaymentBtn.addEventListener('click', function () {
@@ -1785,18 +1781,16 @@
                     if (paymentModal) paymentModal.hide();
                     syncUI();
 
-                    alert('ชำระเงินสำเร็จผ่านช่องทาง "' + paymentMethod + '" เรียบร้อยแล้ว! สถานะแพ็กเกจของคุณคือ ' + selectedPackageForPay + ' Package');
+                    alert('ชำระเงินผ่านช่องทาง "' + paymentMethod + '" เรียบร้อยแล้ว! แพ็กเกจปัจจุบันของคุณคือ ' + selectedPackageForPay + ' Package');
                     selectedPackageForPay = null;
                 });
             }
 
-            // ฟังก์ชันเมื่อลูกค้ากดปุ่มอ่านนิทานในหน้า Shoptale.html
             window.openStoryAlert = function (title, pkgName, authorParam) {
                 let requiredPkg = 'Basic';
                 if (pkgName.indexOf('Standard') !== -1) requiredPkg = 'Standard';
                 if (pkgName.indexOf('Premium') !== -1) requiredPkg = 'Premium';
 
-                // ดึงข้อมูลผู้แต่งจาก Card หากไม่ได้ส่งมาโดยตรง
                 let storyAuthor = authorParam || '';
                 if (!storyAuthor) {
                     document.querySelectorAll('.book-item').forEach(function (item) {
@@ -1806,19 +1800,16 @@
                     });
                 }
 
-                // 1. ตรวจสอบเงื่อนไขว่าตรงกับนิทาน "กระต่ายน้อยนักสำรวจดาว" (PretaleStory/Tale_Rubbit.html) หรือไม่
-                // เรื่องอื่นๆ ทั้งหมดให้ล็อคไว้เพราะกำลังพัฒนา
                 if (!isRabbitUnlockableStory(title, storyAuthor, requiredPkg)) {
-                    alert('🔒 นิทานเรื่อง "' + title + '" ถูกล็อคไว้เนื่องจากกำลังพัฒนาในขณะนี้\n(เปิดให้ปลดล็อคเฉพาะเรื่อง "กระต่ายน้อยนักสำรวจดาว" | ผู้แต่ง: ครูพี่แพรว นิทานดาวเหนือ | Premium 550 บาท เท่านั้น)');
+                    alert('✨ นิทานเรื่อง "' + title + '" เตรียมพบกันเร็วๆ นี้!\n(ขณะนี้เปิดให้อ่านเฉพาะเรื่อง "กระต่ายน้อยนักสำรวจดาว" | ผู้แต่ง: ครูพี่แพรว นิทานดาวเหนือ | Premium 550 บาท)');
                     return;
                 }
 
                 const state = getState();
 
-                // 2. ต้องลงทะเบียนหรือเข้าสู่ระบบก่อน
                 if (!state || !state.isLoggedIn) {
                     pendingPackageAfterReg = requiredPkg;
-                    alert('กรุณาลงทะเบียนสมาชิกหรือเข้าสู่ระบบก่อนอ่านนิทานเรื่อง "' + title + '"');
+                    alert('กรุณาสมัครสมาชิกหรือเข้าใช้งานก่อนอ่านนิทานเรื่อง "' + title + '"');
                     if (registerModal) registerModal.show();
                     return;
                 }
@@ -1827,27 +1818,23 @@
                 const userRule = PACKAGE_RULES[userPkg] || PACKAGE_RULES.Basic;
                 const reqRank = PACKAGE_RULES[requiredPkg] ? PACKAGE_RULES[requiredPkg].rank : 3;
 
-                // 3. ตรวจสอบระดับ Package ของผู้ใช้งานว่าตรงตามเงื่อนไข (Premium 550 บาท) หรือไม่
                 if (userRule.rank < reqRank) {
-                    alert('นิทานเรื่อง "' + title + '" (ผู้แต่ง: ' + storyAuthor + ') สำหรับสมาชิก ' + requiredPkg + ' Package ขึ้นไป กรุณาอัปเกรดแพ็กเกจเพื่อปลดล็อค');
+                    alert('นิทานเรื่อง "' + title + '" (ผู้แต่ง: ' + storyAuthor + ') สำหรับสมาชิก ' + requiredPkg + ' Package ขึ้นไป กรุณาอัปเกรดแพ็กเกจเพื่อเปิดอ่าน');
                     openPaymentFlow(requiredPkg);
                     return;
                 }
 
-                // 4. ตรวจสอบโควตาการอ่านต่อวันตามแพ็กเกจ
                 if ((state.storiesReadToday || 0) >= userRule.maxPerDay) {
                     alert('คุณใช้สิทธิ์อ่านนิทานครบ ' + userRule.maxPerDay + ' เรื่อง/วัน สำหรับ ' + userPkg + ' Package แล้ว กรุณาอัปเกรดแพ็กเกจเพื่ออ่านเพิ่ม');
                     if (registerModal) registerModal.show();
                     return;
                 }
 
-                // 5. นับโควตาการอ่านของระบบ Package ทันทีในหน้านี้และซิงก์ทุกหน้า
                 state.storiesReadToday = (state.storiesReadToday || 0) + 1;
                 state.lastReadDate = new Date().toISOString().slice(0, 10);
                 saveState(state);
                 syncUI();
 
-                // 6. บันทึกข้อมูลนิทานที่ปลดล็อกเพื่อเชื่อมไปยัง PretaleStory/Tale_Rubbit.html
                 const unlockedData = {
                     title: title,
                     author: storyAuthor,
@@ -1860,7 +1847,6 @@
                 } catch (e) {}
                 writeWindowSync({ selectedStory: unlockedData });
 
-                // 7. แสดงหน้าต่าง "ปลดล็อคนิทานสำเร็จ!" พร้อมลิงก์ไปยัง PretaleStory/Tale_Rubbit.html
                 document.getElementById('unlockPkgBadge').textContent = 'สิทธิ์สมาชิก ' + userPkg + ' Package (อ่านแล้ว ' + state.storiesReadToday + '/' + userRule.maxPerDay + ' เรื่อง)';
                 document.getElementById('unlockStoryTitleText').textContent = '🎉 คุณได้ปลดล็อค "' + title + '" เรียบร้อยแล้ว!';
                 document.getElementById('unlockStoryDescText').textContent =
@@ -1873,11 +1859,10 @@
                 if (unlockStoryModal) unlockStoryModal.show();
             };
 
-            // 8. เฉพาะเมื่อเปิดเพจอ่านหนังสือนิทาน PretaleStory/Tale_Rubbit.html
             if (currentPath.indexOf('Tale_Rubbit.html') !== -1 || currentPath.indexOf('PretaleStory') !== -1) {
                 const state = getState();
                 if (!state || !state.isLoggedIn) {
-                    alert('กรุณาเข้าสู่ระบบหรือสมัครสมาชิกก่อนเข้าอ่านนิทาน');
+                    alert('กรุณาสมัครสมาชิกหรือเข้าใช้งานก่อนอ่านนิทาน');
                     window.location.href = getIndexUrl('#pricing');
                     return;
                 }
@@ -1901,7 +1886,6 @@
 
                 const storyTitle = UNLOCKABLE_STORY_CONDITION.titleKeyword;
 
-                // หากยังไม่ได้ถูกนับโควตาจากหน้า Shoptale.html ให้ทำการนับโควตาที่นี่
                 if (!savedStory || !savedStory.countedInShop) {
                     if ((state.storiesReadToday || 0) >= rule.maxPerDay) {
                         alert('คุณใช้สิทธิ์การอ่านครบ ' + rule.maxPerDay + ' เรื่อง/วันแล้ว กรุณาอัปเกรดแพ็กเกจ');
@@ -1946,6 +1930,5 @@
         });
     })();
     </script>
-    
 </body>
 </html>
